@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Boter, Kaas en Eieren</string>
+    <string name="action_settings">Instellingen</string>
+
+    <string name="title_activity_splash">Opening</string>
+    <string name="title_activity_game">Spel</string>
+    <string name="title_activity_main_menu">Hoofdmenu</string>
+    <string name="title_activity_end_menu">Uitgespeeld</string>
+
+    <string name="easy_mode">Makkelijk</string>
+    <string name="hard_mode">Moeilijk</string>
+    <string name="restart">Herstart</string>
+    <string name="one_player">Één Speler</string>
+    <string name="two_players">Twee Spelers</string>
+    <string name="win">Gefeliciteerd, je hebt gewonnen!</string>
+    <string name="lose">Sorry, je hebt verloren.</string>
+    <string name="draw">Gelijkspel</string>
+    <string name="back_to_main">Terug naar het Hoofdmenu</string>
+    <string name="play_again">Opnieuw</string>
+
+</resources>
