@@ -32,13 +32,16 @@ public final class TicTacToeAI {
 
     public GameState randomMove() {
         //TODO
+        return null;
     }
 
     public GameState calculatedMove() {
         //TODO
+        return null;
     }
 
     public GameState CalculateResult() {
         //TODO calculate the result of the game, ie. who won?
+        return null;
     }
 }
