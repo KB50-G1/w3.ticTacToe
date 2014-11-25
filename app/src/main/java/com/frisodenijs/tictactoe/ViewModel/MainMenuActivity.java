@@ -1,12 +1,15 @@
 package com.frisodenijs.tictactoe.ViewModel;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
+import com.frisodenijs.tictactoe.Model.Board;
+import com.frisodenijs.tictactoe.Model.EasyModeBot;
+import com.frisodenijs.tictactoe.Model.Game;
+import com.frisodenijs.tictactoe.Model.HumanPlayer;
+import com.frisodenijs.tictactoe.Model.Player;
 import com.frisodenijs.tictactoe.R;
 
 
@@ -19,11 +22,23 @@ public class MainMenuActivity extends ActionBarActivity {
     }
 
     public void onClickOnePlayer(View view) {
-        Intent i = new Intent(MainMenuActivity.this, GameActivity.class);
-        startActivity(i);
+
+        Game game = new Game(new HumanPlayer(), new HumanPlayer());
+        this.loadGameActivity(game);
     }
 
     public void onClickTwoPlayers(View view) {
+
+        Game game = new Game(new HumanPlayer(), new EasyModeBot());
+        this.loadGameActivity(game);
+    }
+
+    private void loadGameActivity(Game game)
+    {
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("game", game);
+
         Intent i = new Intent(MainMenuActivity.this, GameActivity.class);
         startActivity(i);
     }
