@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.frisodenijs.tictactoe.MainMenuActivity">
+    tools:context="com.frisodenijs.tictactoe.ViewModel.MainMenuActivity">
 
     <Button
         android:id="@+id/onePlayerButton"
@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="137dp"
-        android:text="@string/one_player" />
+        android:text="@string/one_player"
+        android:onClick="onClickOnePlayer"/>
 
     <Button
         android:id="@+id/twoPlayerButton"
@@ -22,7 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/hardModeCheckBox"
         android:layout_centerHorizontal="true"
-        android:text="@string/two_players" />
+        android:text="@string/two_players"
+        android:onClick="onClickTwoPlayers"/>
 
     <CheckBox
         android:id="@+id/hardModeCheckBox"
