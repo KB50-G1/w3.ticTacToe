@@ -19,6 +19,9 @@ public class EndMenuActivity extends ActionBarActivity {
     }
 
     public void onClickPlayAgain(View view) {
+
+        // TODO: get the game object from the intent, restart the board and redirect to game activity
+
         Intent i = new Intent(EndMenuActivity.this, GameActivity.class);
         startActivity(i);
     }

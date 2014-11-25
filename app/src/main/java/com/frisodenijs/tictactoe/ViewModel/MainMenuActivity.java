@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
-import com.frisodenijs.tictactoe.Model.Board;
-import com.frisodenijs.tictactoe.Model.EasyModeBot;
+import com.frisodenijs.tictactoe.Model.AIPlayer;
 import com.frisodenijs.tictactoe.Model.Game;
 import com.frisodenijs.tictactoe.Model.HumanPlayer;
-import com.frisodenijs.tictactoe.Model.Player;
 import com.frisodenijs.tictactoe.R;
 
 
@@ -29,12 +27,11 @@ public class MainMenuActivity extends ActionBarActivity {
 
     public void onClickTwoPlayers(View view) {
 
-        Game game = new Game(new HumanPlayer(), new EasyModeBot());
+        Game game = new Game(new HumanPlayer(), new AIPlayer());
         this.loadGameActivity(game);
     }
 
-    private void loadGameActivity(Game game)
-    {
+    private void loadGameActivity(Game game) {
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("game", game);
