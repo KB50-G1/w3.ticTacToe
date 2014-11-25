@@ -7,6 +7,4 @@ import java.io.Serializable;
  */
 public abstract class Player implements Serializable {
 
-    protected Player() {
-    }
 }

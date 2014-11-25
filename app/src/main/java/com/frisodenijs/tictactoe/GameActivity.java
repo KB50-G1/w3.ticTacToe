@@ -3,6 +3,7 @@ package com.frisodenijs.tictactoe;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 
 import com.frisodenijs.tictactoe.Game.Game;
@@ -32,6 +33,9 @@ public class GameActivity extends ActionBarActivity {
 
         // TODO: fill in buttons with the board info
 
+        // TODO: update user information. P1 or P2 turn, etc...
+
+
     }
 
     @Override
@@ -53,19 +57,40 @@ public class GameActivity extends ActionBarActivity {
 
     }
 
+
+    /*
+     * Board Management
+     */
+
+    private void updateBoardButtons() {
+        // TODO: get board status and update all buttons or imagebuttons in the activity
+    }
+
+
+    /*
+     * onClick Buttons functionality
+     */
+
     public void onClickField(View view) {
-        Intent i = new Intent(GameActivity.this, EndMenuActivity.class);
-        startActivity(i);
+
     }
 
     public void onClickRestart(View view) {
 
-        // TODO: Call restart method on board class & clear buttons
+        // TODO: really need a thread? it's not working without it. (nor with it)
+        //game.resetBoard();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("TEST", "Thread is working!");
+                //game.resetBoard();
+            }
+        }).start();
 
     }
 
-    public void onClickBack(View view)
-    {
+    public void onClickBack(View view) {
         Intent i = new Intent(this, MainMenuActivity.class);
         startActivity(i);
     }

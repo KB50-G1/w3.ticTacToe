@@ -23,6 +23,7 @@ public class EndMenuActivity extends ActionBarActivity {
     }
 
     public void onClickBack(View view) {
+
         Intent i = new Intent(EndMenuActivity.this, MainMenuActivity.class);
         startActivity(i);
     }
