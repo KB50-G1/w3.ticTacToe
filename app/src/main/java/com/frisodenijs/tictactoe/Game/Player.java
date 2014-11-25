@@ -1,4 +1,4 @@
-package com.frisodenijs.tictactoe.Model;
+package com.frisodenijs.tictactoe.Game;
 
 import java.io.Serializable;
 

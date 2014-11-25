@@ -1,13 +1,9 @@
-package com.frisodenijs.tictactoe.ViewModel;
+package com.frisodenijs.tictactoe;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-
-import com.frisodenijs.tictactoe.R;
 
 
 public class EndMenuActivity extends ActionBarActivity {

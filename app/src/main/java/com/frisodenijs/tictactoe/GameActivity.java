@@ -1,12 +1,11 @@
-package com.frisodenijs.tictactoe.ViewModel;
+package com.frisodenijs.tictactoe;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
-import com.frisodenijs.tictactoe.Model.Game;
-import com.frisodenijs.tictactoe.R;
+import com.frisodenijs.tictactoe.Game.Game;
 
 
 public class GameActivity extends ActionBarActivity {
@@ -63,5 +62,11 @@ public class GameActivity extends ActionBarActivity {
 
         // TODO: Call restart method on board class & clear buttons
 
+    }
+
+    public void onClickBack(View view)
+    {
+        Intent i = new Intent(this, MainMenuActivity.class);
+        startActivity(i);
     }
 }

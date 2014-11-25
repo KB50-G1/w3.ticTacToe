@@ -1,10 +1,8 @@
-package com.frisodenijs.tictactoe.ViewModel;
+package com.frisodenijs.tictactoe;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-
-import com.frisodenijs.tictactoe.R;
 
 import java.util.Timer;
 import java.util.TimerTask;

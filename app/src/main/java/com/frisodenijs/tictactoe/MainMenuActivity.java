@@ -1,14 +1,13 @@
-package com.frisodenijs.tictactoe.ViewModel;
+package com.frisodenijs.tictactoe;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
-import com.frisodenijs.tictactoe.Model.AIPlayer;
-import com.frisodenijs.tictactoe.Model.Game;
-import com.frisodenijs.tictactoe.Model.HumanPlayer;
-import com.frisodenijs.tictactoe.R;
+import com.frisodenijs.tictactoe.Game.AIPlayer;
+import com.frisodenijs.tictactoe.Game.Game;
+import com.frisodenijs.tictactoe.Game.HumanPlayer;
 
 
 public class MainMenuActivity extends ActionBarActivity {
