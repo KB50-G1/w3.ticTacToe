@@ -19,5 +19,6 @@
     <string name="draw">Gelijkspel</string>
     <string name="back_to_main">Terug naar het Hoofdmenu</string>
     <string name="play_again">Opnieuw</string>
+    <string name="invalid_move">Ongeldige zet</string>
 
 </resources>
