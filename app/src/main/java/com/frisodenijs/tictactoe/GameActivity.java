@@ -51,7 +51,8 @@ public class GameActivity extends ActionBarActivity {
 
         // First time Activity is created, take data from the intent.
         if (savedInstanceState == null) {
-            Toast.makeText(this, "First time here!", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, "First time here!", Toast.LENGTH_SHORT).show();
+            Log.d("GAME", "First time here!");
             Intent intent = getIntent();
             game = (Game) intent.getSerializableExtra("game");
             // TODO: this shouldn't be necessary. Class is instantiated on the previous activity and sent through the intent.
@@ -62,7 +63,8 @@ public class GameActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Toast.makeText(this, "Resuming...", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "Resuming...", Toast.LENGTH_SHORT).show();
+        Log.d("GAME", "Resuming...");
 
         // TODO: fill in buttons with the board info
         // TODO: update user information. P1 or P2 turn, etc...
@@ -84,7 +86,8 @@ public class GameActivity extends ActionBarActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        Toast.makeText(this, "Restoring game!", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "Restoring game!", Toast.LENGTH_SHORT).show();
+        Log.d("GAME", "Restoring game...");
 
         this.game = (Game) savedInstanceState.getSerializable("game");
 
