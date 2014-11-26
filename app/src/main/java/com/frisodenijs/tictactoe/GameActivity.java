@@ -10,15 +10,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.frisodenijs.tictactoe.Game.Game;
-import com.frisodenijs.tictactoe.Game.HumanPlayer;
 import com.frisodenijs.tictactoe.Game.Player;
 
 
 public class GameActivity extends ActionBarActivity {
 
     private Game game;
-    private TextView playerInfo;
 
+    private TextView playerInfo;
     private Button[][] buttons;
 
     // TODO: best way to store reference to all game buttons? i refuse to findById all 9 buttons lol
@@ -47,7 +46,6 @@ public class GameActivity extends ActionBarActivity {
         buttons[2][0] = (Button) findViewById(R.id.b20);
         buttons[2][1] = (Button) findViewById(R.id.b21);
         buttons[2][2] = (Button) findViewById(R.id.b22);
-
 
         // First time Activity is created, take data from the intent.
         if (savedInstanceState == null) {
@@ -97,7 +95,7 @@ public class GameActivity extends ActionBarActivity {
         Player[][] board = game.getBoard();
 
         for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++) {
+                for (int j = 0; j < 3; j++) {
                 if (board[i][j] != null)
                     buttons[i][j].setText(board[i][j].toString());
                 else
@@ -130,16 +128,11 @@ public class GameActivity extends ActionBarActivity {
                             goToFinishGame();
                         }
                     } else {
-                        // If not, warn user of invalid move6
+                        // If not, warn user of invalid move
                         Toast.makeText(this, this.getResources().getString(R.string.invalid_move), Toast.LENGTH_SHORT).show();
                     }
 
                 }
-
-        // TODO: methods of game class are not working in this activity!
-        //buttonPressed.setText(game.getCurrentPlayer().toString());
-        //game.nextPlayer();
-
     }
 
     public void onClickRestart(View view) {

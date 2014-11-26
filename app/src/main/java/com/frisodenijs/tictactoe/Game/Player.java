@@ -21,7 +21,7 @@ public abstract class Player implements Serializable {
         return mark;
     }
 
-    public void makeMove()
+    public void notifyToMove()
     {
 
     }

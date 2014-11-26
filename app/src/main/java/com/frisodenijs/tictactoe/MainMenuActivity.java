@@ -9,6 +9,7 @@ import com.frisodenijs.tictactoe.Game.AIPlayer;
 import com.frisodenijs.tictactoe.Game.Game;
 import com.frisodenijs.tictactoe.Game.HumanPlayer;
 import com.frisodenijs.tictactoe.Game.Player;
+import com.frisodenijs.tictactoe.Game.RandomPlayer;
 
 
 public class MainMenuActivity extends ActionBarActivity {
@@ -23,7 +24,7 @@ public class MainMenuActivity extends ActionBarActivity {
 
         Game game = new Game(
                 new HumanPlayer(Player.Icon.DRAW_X),
-                new AIPlayer(Player.Icon.DRAW_O)
+                new RandomPlayer(Player.Icon.DRAW_O)
         );
 
         this.loadGameActivity(game);

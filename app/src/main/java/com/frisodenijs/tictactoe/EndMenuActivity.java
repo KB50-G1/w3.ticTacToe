@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.frisodenijs.tictactoe.Game.Game;
 
@@ -12,13 +13,24 @@ public class EndMenuActivity extends ActionBarActivity {
 
     private Game game;
 
+    private TextView gameResult;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_menu);
 
+
+        gameResult = (TextView) findViewById(R.id.result);
+
         Intent i = getIntent();
         game = (Game) i.getSerializableExtra("game");
+
+        if(game.getWinner() != null)
+            gameResult.append(game.getWinner().toString());
+        else
+            gameResult.setText(getResources().getString(R.string.draw));
+
         // Reset the board, in case the player wants to play again.
         game.resetBoard();
 
