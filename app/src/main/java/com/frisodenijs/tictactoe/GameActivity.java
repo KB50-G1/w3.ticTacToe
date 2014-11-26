@@ -82,7 +82,6 @@ public class GameActivity extends ActionBarActivity {
         Log.d("GAME", "Restoring game...");
 
         this.game = (Game) savedInstanceState.getSerializable("game");
-
     }
 
     /*
@@ -152,5 +151,7 @@ public class GameActivity extends ActionBarActivity {
         Intent i = new Intent(this, EndMenuActivity.class);
         i.putExtras(bundle);
         startActivity(i);
+
+        finish();
     }
 }

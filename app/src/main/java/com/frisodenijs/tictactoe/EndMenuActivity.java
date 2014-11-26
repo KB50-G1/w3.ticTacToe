@@ -1,8 +1,8 @@
 package com.frisodenijs.tictactoe;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -40,6 +40,18 @@ public class EndMenuActivity extends ActionBarActivity {
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("game", game);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        this.game = (Game) savedInstanceState.getSerializable("game");
+    }
+
     public void onClickPlayAgain(View view) {
 
         // TODO: get the game object from the intent, restart the board and redirect to game activity
@@ -49,6 +61,7 @@ public class EndMenuActivity extends ActionBarActivity {
         Intent i = new Intent(this, GameActivity.class);
         i.putExtras(bundle);
         startActivity(i);
+        finish();
     }
 
     public void onClickBack(View view) {
@@ -56,5 +69,6 @@ public class EndMenuActivity extends ActionBarActivity {
         // TODO: we can also save the user settings, or give it the chance to continue playing with the same game instance
         Intent i = new Intent(EndMenuActivity.this, MainMenuActivity.class);
         startActivity(i);
+        finish();
     }
 }
