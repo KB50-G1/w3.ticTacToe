@@ -19,5 +19,6 @@
     <string name="draw">Empate</string>
     <string name="back_to_main">Menu principal</string>
     <string name="play_again">Jugar otra vez</string>
+    <string name="invalid_move">Movimiento Invalido</string>
 
 </resources>

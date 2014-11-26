@@ -21,6 +21,8 @@ public class MainMenuActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main_menu);
     }
 
+    // TODO: give the change to change player name (both players), and draw icon to the first one.
+
     public void onClickOnePlayer(View view) {
 
         Game game;
@@ -30,7 +32,7 @@ public class MainMenuActivity extends ActionBarActivity {
         {
             game = new Game(
                     new HumanPlayer(Player.Icon.DRAW_X),
-                    new RandomPlayer(Player.Icon.DRAW_O)
+                    new AIPlayer(Player.Icon.DRAW_O)
             );
         }
         else

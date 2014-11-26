@@ -8,4 +8,9 @@ public class HumanPlayer extends Player {
     public HumanPlayer(Icon mark) {
         super(mark);
     }
+
+    @Override
+    public int[] makeAutoMove() {
+        return new int[0];
+    }
 }

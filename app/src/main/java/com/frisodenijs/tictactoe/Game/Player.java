@@ -8,7 +8,7 @@ import java.io.Serializable;
 public abstract class Player implements Serializable {
 
     private Icon mark;
-    private String name;
+    private String name = "Player";
     private int winsCount;
 
     public enum Icon {
@@ -17,6 +17,12 @@ public abstract class Player implements Serializable {
 
     protected Player(Icon mark) {
         this.mark = mark;
+        this.winsCount = 0;
+    }
+
+    protected Player(Icon mark, String name) {
+        this.mark = mark;
+        this.name = name;
         this.winsCount = 0;
     }
 

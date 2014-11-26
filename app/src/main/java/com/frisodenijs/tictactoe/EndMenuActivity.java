@@ -66,8 +66,7 @@ public class EndMenuActivity extends ActionBarActivity {
 
     public void onClickPlayAgain(View view) {
 
-        // TODO: get the game object from the intent, restart the board and redirect to game activity
-
+        // Get the game object from the intent, restart the board and redirect to game activity
         Bundle bundle = new Bundle();
         bundle.putSerializable("game", game);
         Intent i = new Intent(this, GameActivity.class);
@@ -78,7 +77,8 @@ public class EndMenuActivity extends ActionBarActivity {
 
     public void onClickBack(View view) {
 
-        // TODO: we can also save the user settings, or give it the chance to continue playing with the same game instance
+        // Return to Main Menu Activity
+        // TODO: we could also save the user settings, or give it the chance to continue playing with the same game instance
         Intent i = new Intent(EndMenuActivity.this, MainMenuActivity.class);
         startActivity(i);
         finish();

@@ -26,7 +26,7 @@ public class SplashActivity extends ActionBarActivity {
         };
 
         Timer timer = new Timer();
-        timer.schedule(task, 3000);
+        timer.schedule(task, 3000); // 3000ms = 3s
     }
 
 }
