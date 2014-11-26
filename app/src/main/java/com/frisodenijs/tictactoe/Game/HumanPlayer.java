@@ -5,7 +5,7 @@ package com.frisodenijs.tictactoe.Game;
  */
 public class HumanPlayer extends Player {
 
-    public HumanPlayer() {
+    public HumanPlayer(Icon mark) {
+        super(mark);
     }
-
 }

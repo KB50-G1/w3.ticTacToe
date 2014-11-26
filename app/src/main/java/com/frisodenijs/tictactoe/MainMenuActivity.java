@@ -8,6 +8,7 @@ import android.view.View;
 import com.frisodenijs.tictactoe.Game.AIPlayer;
 import com.frisodenijs.tictactoe.Game.Game;
 import com.frisodenijs.tictactoe.Game.HumanPlayer;
+import com.frisodenijs.tictactoe.Game.Player;
 
 
 public class MainMenuActivity extends ActionBarActivity {
@@ -20,13 +21,21 @@ public class MainMenuActivity extends ActionBarActivity {
 
     public void onClickOnePlayer(View view) {
 
-        Game game = new Game(new HumanPlayer(), new HumanPlayer());
+        Game game = new Game(
+                new HumanPlayer(Player.Icon.DRAW_X),
+                new HumanPlayer(Player.Icon.DRAW_O)
+        );
+
         this.loadGameActivity(game);
     }
 
     public void onClickTwoPlayers(View view) {
 
-        Game game = new Game(new HumanPlayer(), new AIPlayer());
+        Game game = new Game(
+                new HumanPlayer(Player.Icon.DRAW_X),
+                new AIPlayer(Player.Icon.DRAW_O)
+        );
+
         this.loadGameActivity(game);
     }
 

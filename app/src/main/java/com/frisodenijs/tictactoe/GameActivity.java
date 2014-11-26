@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.frisodenijs.tictactoe.Game.Game;
 
@@ -22,6 +25,7 @@ public class GameActivity extends ActionBarActivity {
 
         // First time Activity is created, take data from the intent.
         if (savedInstanceState == null) {
+            Toast.makeText(this, "First time here!", Toast.LENGTH_SHORT).show();
             Intent intent = getIntent();
             game = (Game) intent.getSerializableExtra("game");
         }
@@ -30,6 +34,7 @@ public class GameActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Toast.makeText(this, "Resuming...", Toast.LENGTH_SHORT).show();
 
         // TODO: fill in buttons with the board info
 
@@ -52,6 +57,7 @@ public class GameActivity extends ActionBarActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        Toast.makeText(this, "Restoring game!", Toast.LENGTH_SHORT).show();
 
         this.game = (Game) savedInstanceState.getSerializable("game");
 
@@ -72,6 +78,15 @@ public class GameActivity extends ActionBarActivity {
      */
 
     public void onClickField(View view) {
+
+        // TODO: do not update view directly. 1: Update board. 2: Re-draw the buttons
+        Button buttonPressed = (Button) findViewById(view.getId());
+
+        // TODO: methods of game class are not working in this activity!
+        //buttonPressed.setText(game.getCurrentPlayer().toString());
+        Log.d("TEST", game.test());
+
+
 
     }
 

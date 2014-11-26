@@ -1,5 +1,6 @@
 package com.frisodenijs.tictactoe.Game;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -45,6 +46,20 @@ public class Game implements Serializable {
         // Set the other player as current
         setCurrentPlayer(players.get(index));
 
+    }
+
+    public String test() {
+        return "HOLAAA";
+    }
+
+
+    public Player getWinner() {
+        // TODO: 1. check horizontal. 2: check vertical. 3: check diagonals
+
+        // return winner;
+
+        // No winner found
+        return null;
     }
 
     public void resetBoard() {
