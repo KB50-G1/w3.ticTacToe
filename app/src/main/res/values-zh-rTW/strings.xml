@@ -4,20 +4,20 @@
     <string name="app_name">圈圈叉叉</string>
     <string name="action_settings">設定</string>
 
-    <string name="title_activity_splash">Opening</string>
-    <string name="title_activity_game">Game</string>
-    <string name="title_activity_main_menu">Main Menu</string>
-    <string name="title_activity_end_menu">Game Finished</string>
+    <string name="title_activity_splash">打開</string>
+    <string name="title_activity_game">遊戲</string>
+    <string name="title_activity_main_menu">主畫面</string>
+    <string name="title_activity_end_menu">遊戲結束</string>
 
     <string name="easy_mode">簡單模式</string>
     <string name="hard_mode">困難模式</string>
     <string name="restart">重新開始</string>
     <string name="one_player">一個玩家</string>
     <string name="two_players">兩個玩家</string>
-    <string name="win">Congratulations, you won!</string>
-    <string name="lose">Sorry, you lost.</string>
-    <string name="draw">Draw</string>
-    <string name="back_to_main">Back to Main Menu</string>
-    <string name="play_again">Play Again</string>
+    <string name="win">恭喜, 你贏了!</string>
+    <string name="lose">抱歉, 你輸了.</string>
+    <string name="draw">平手</string>
+    <string name="back_to_main">回到主畫面</string>
+    <string name="play_again">再來一次</string>
 
 </resources>

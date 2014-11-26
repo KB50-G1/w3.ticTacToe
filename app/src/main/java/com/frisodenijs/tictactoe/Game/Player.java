@@ -8,6 +8,8 @@ import java.io.Serializable;
 public abstract class Player implements Serializable {
 
     private Icon mark;
+    private String name;
+    private int winsCount;
 
     public enum Icon {
         DRAW_X, DRAW_O
@@ -15,10 +17,32 @@ public abstract class Player implements Serializable {
 
     protected Player(Icon mark) {
         this.mark = mark;
+        this.winsCount = 0;
     }
 
     public Icon getMark() {
         return mark;
+    }
+
+    public void notifyToMove()
+    {
+
+    }
+
+    public int getWinsCount() {
+        return winsCount;
+    }
+
+    public void incrementWinsCount() {
+        this.winsCount++;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

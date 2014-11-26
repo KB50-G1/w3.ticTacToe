@@ -21,6 +21,10 @@ public class Game implements Serializable {
         this.currentPlayer = players.get(0);
     }
 
+    public Player getLastWinner() {
+        return board.getWinner();
+    }
+
     public Player[][] getBoard() {
         return board.getBoard();
     }
@@ -33,23 +37,29 @@ public class Game implements Serializable {
         return players;
     }
 
-    public Player getWinner() {
-        // TODO: 1. check horizontal. 2: check vertical. 3: check diagonals
+    public Player getPlayer(int i)
+    {
+        return players.get(i);
+    }
 
-        // return winner;
 
-        // No winner found
-        return null;
+    public boolean checkGameEnd() {
+        // TODO: check board full, check winner
+
+        Player winner = board.checkWinner();
+        if (winner != null)
+            winner.incrementWinsCount();
+
+        return board.isFull() || winner != null;
+
     }
 
     private void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
 
-    public boolean makeMove(int[] position)
-    {
-        if(board.setPlayerAtPosition(currentPlayer, position))
-        {
+    public boolean makeMove(int[] position) {
+        if (board.setPlayerAtPosition(currentPlayer, position)) {
             this.nextPlayer();
             return true;
         }
@@ -66,17 +76,16 @@ public class Game implements Serializable {
         // Set the other player as current
         setCurrentPlayer(players.get(index));
 
+        if (currentPlayer instanceof RandomPlayer) {
+            while (!board.isFull() && !makeMove(((RandomPlayer) currentPlayer).makeAutoMove())) ;
+        }
     }
-
-    public String test() {
-        return "HOLAAA";
-    }
-
 
     public void resetBoard() {
         this.board = new Board();
         // Set turn to first player. (Always human)
         currentPlayer = players.get(0);
+
     }
 
 }
