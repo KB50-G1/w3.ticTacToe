@@ -24,11 +24,6 @@ public abstract class Player implements Serializable {
         return mark;
     }
 
-    public void notifyToMove()
-    {
-
-    }
-
     public int getWinsCount() {
         return winsCount;
     }
@@ -44,6 +39,8 @@ public abstract class Player implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public abstract int[] makeAutoMove();
 
     @Override
     public String toString() {

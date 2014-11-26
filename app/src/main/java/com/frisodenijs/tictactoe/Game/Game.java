@@ -76,8 +76,8 @@ public class Game implements Serializable {
         // Set the other player as current
         setCurrentPlayer(players.get(index));
 
-        if (currentPlayer instanceof RandomPlayer) {
-            while (!board.isFull() && !makeMove(((RandomPlayer) currentPlayer).makeAutoMove())) ;
+        if (!(currentPlayer instanceof HumanPlayer)) {
+            while (!board.isFull() && !makeMove(((RandomPlayer) currentPlayer).makeAutoMove()));
         }
     }
 
