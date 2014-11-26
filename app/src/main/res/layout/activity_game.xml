@@ -1,118 +1,155 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context="com.frisodenijs.tictactoe.ViewModel.GameActivity">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:paddingBottom="@dimen/activity_vertical_margin"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingTop="@dimen/activity_vertical_margin"
+              tools:context="com.frisodenijs.tictactoe.GameActivity">
 
     <TableLayout
         android:id="@+id/playingField"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="1"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="top">
+        android:layout_gravity="top"
+        android:layout_weight="1">
 
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1">
+
             <Button
                 android:id="@+id/b00"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text="" />
+                android:text=""/>
+
             <Button
                 android:id="@+id/b01"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:layout_column="1"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text=""
-                android:layout_column="1" />
+                android:text=""/>
+
             <Button
                 android:id="@+id/b02"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:layout_column="2"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text=""
-                android:layout_column="2" />
+                android:text=""/>
         </TableRow>
 
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1">
+
             <Button
                 android:id="@+id/b10"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text="" />
+                android:text=""/>
+
             <Button
                 android:id="@+id/b11"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:layout_column="1"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text=""
-                android:layout_column="1" />
+                android:text=""/>
+
             <Button
                 android:id="@+id/b12"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:layout_column="2"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text=""
-                android:layout_column="2" />
+                android:text=""/>
         </TableRow>
 
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1">
+
             <Button
                 android:id="@+id/b20"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text="" />
+                android:text=""/>
+
             <Button
                 android:id="@+id/b21"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:layout_column="1"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text=""
-                android:layout_column="1" />
+                android:text=""/>
+
             <Button
                 android:id="@+id/b22"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:layout_column="2"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text=""
-                android:layout_column="2" />
+                android:text=""/>
         </TableRow>
     </TableLayout>
 
-    <Button
-        android:id="@+id/restartButton"
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:onClick="onClickRestart"
-        android:text="@string/restart"
-        android:layout_gravity="bottom" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/playerInfo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="25sp"
+            android:gravity="center">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/restartButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:onClick="onClickRestart"
+            android:text="@string/restart"/>
+
+        <Button
+            android:id="@+id/backToMenu"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickBack"
+            android:text="@string/back_to_main"/>
+    </LinearLayout>
 
 
 </LinearLayout>

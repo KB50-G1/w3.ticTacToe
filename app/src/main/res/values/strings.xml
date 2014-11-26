@@ -17,7 +17,8 @@
     <string name="win">Congratulations, you won!</string>
     <string name="lose">Sorry, you lost.</string>
     <string name="draw">Draw</string>
-    <string name="back_to_main">Back to Main Menu</string>
+    <string name="back_to_main">Main Menu</string>
     <string name="play_again">Play Again</string>
+    <string name="invalid_move">Invalid Move</string>
 
 </resources>
