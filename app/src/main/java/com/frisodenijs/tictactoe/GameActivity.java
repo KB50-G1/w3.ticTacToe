@@ -76,10 +76,6 @@ public class GameActivity extends ActionBarActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("game", "game");
-
-        outState.putBundle("game", bundle);
         outState.putSerializable("game", game);
     }
 
