@@ -10,9 +10,11 @@ import java.io.Serializable;
 public class Board implements Serializable {
 
     private Player[][] board;
+    private Player winner;
 
     public Board() {
         board = new Player[3][3];
+        winner = null;
     }
 
     public Player[][] getBoard() {
@@ -21,6 +23,10 @@ public class Board implements Serializable {
 
     public Player getPlayerAtPosition(int[] position) {
         return board[position[0]][position[1]];
+    }
+
+    public Player getWinner() {
+        return winner;
     }
 
     public boolean setPlayerAtPosition(Player player, int[] position) {
@@ -53,6 +59,20 @@ public class Board implements Serializable {
         return true;
     }
 
+    public Player checkWinner() {
+        // TODO: 1. check horizontal. 2: check vertical. 3: check diagonals
+
+        if(checkHorizontal() != null)
+            winner = checkHorizontal();
+        if(checkVertical() != null)
+            winner = checkVertical();
+        if(checkDiagonal() != null)
+            winner = checkDiagonal();
+
+        // Player if winner found, null otherwise;
+        return winner;
+    }
+
     // Checks if there are 3 in a row horizontally.
     public Player checkHorizontal() {
         for (int y = 0; y < board.length; y++) {
@@ -77,20 +97,6 @@ public class Board implements Serializable {
         }
         return null;
     }
-
-    /*
-    public Player checkHorizontal2() {
-
-        for(int i = 0; i < 3; i++)
-            for(int j = 0; j < 3; j++)
-            {
-
-            }
-
-
-        return null;
-    }
-    */
 
     // Checks if there are 3 in a row vertically.
     public Player checkVertical() {

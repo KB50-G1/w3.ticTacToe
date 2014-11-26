@@ -12,7 +12,6 @@ public class Game implements Serializable {
     private Board board;
     private ArrayList<Player> players;
     private Player currentPlayer;
-    private Player winner;
 
     public Game(Player p1, Player p2) {
         this.board = new Board();
@@ -22,8 +21,8 @@ public class Game implements Serializable {
         this.currentPlayer = players.get(0);
     }
 
-    public Player getWinner() {
-        return winner;
+    public Player getLastWinner() {
+        return board.getWinner();
     }
 
     public Player[][] getBoard() {
@@ -38,25 +37,20 @@ public class Game implements Serializable {
         return players;
     }
 
-    public Player checkWinner() {
-        // TODO: 1. check horizontal. 2: check vertical. 3: check diagonals
-
-        // return winner;
-        if(board.checkHorizontal() != null)
-            return winner = board.checkHorizontal();
-        if(board.checkVertical() != null)
-            return winner = board.checkVertical();
-        if(board.checkDiagonal() != null)
-            return winner = board.checkDiagonal();
-
-        // No winner found
-        return null;
+    public Player getPlayer(int i)
+    {
+        return players.get(i);
     }
+
 
     public boolean checkGameEnd() {
         // TODO: check board full, check winner
 
-        return board.isFull() || checkWinner() != null;
+        Player winner = board.checkWinner();
+        if (winner != null)
+            winner.incrementWinsCount();
+
+        return board.isFull() || winner != null;
 
     }
 
@@ -83,7 +77,7 @@ public class Game implements Serializable {
         setCurrentPlayer(players.get(index));
 
         if (currentPlayer instanceof RandomPlayer) {
-            while(!board.isFull() && !makeMove(((RandomPlayer) currentPlayer).makeAutoMove()));
+            while (!board.isFull() && !makeMove(((RandomPlayer) currentPlayer).makeAutoMove())) ;
         }
     }
 
@@ -91,6 +85,7 @@ public class Game implements Serializable {
         this.board = new Board();
         // Set turn to first player. (Always human)
         currentPlayer = players.get(0);
+
     }
 
 }

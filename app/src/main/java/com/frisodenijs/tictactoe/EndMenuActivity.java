@@ -13,23 +13,27 @@ public class EndMenuActivity extends ActionBarActivity {
 
     private Game game;
 
-    private TextView gameResult;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_menu);
 
-
-        gameResult = (TextView) findViewById(R.id.result);
+        TextView gameResult = (TextView) findViewById(R.id.result);
+        TextView gameScore = (TextView) findViewById(R.id.gameScore);
 
         Intent i = getIntent();
         game = (Game) i.getSerializableExtra("game");
 
-        if(game.getWinner() != null)
-            gameResult.append(game.getWinner().toString());
+        if(game.getLastWinner() != null)
+            gameResult.setText(game.getLastWinner().toString());
         else
             gameResult.setText(getResources().getString(R.string.draw));
+
+        gameScore.setText(
+                Integer.toString(game.getPlayer(0).getWinsCount())
+                        + " - " +
+                        Integer.toString(game.getPlayer(1).getWinsCount())
+        );
 
         // Reset the board, in case the player wants to play again.
         game.resetBoard();
