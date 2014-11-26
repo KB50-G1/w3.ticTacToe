@@ -21,23 +21,43 @@ public class Game implements Serializable {
         this.currentPlayer = players.get(0);
     }
 
-    public Board getBoard() {
-        return board;
+    public Player[][] getBoard() {
+        return board.getBoard();
     }
 
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
 
-    public void setCurrentPlayer(Player currentPlayer) {
-        this.currentPlayer = currentPlayer;
-    }
-
     public ArrayList<Player> getPlayers() {
         return players;
     }
 
-    private void nextPlayer() {
+    public Player getWinner() {
+        // TODO: 1. check horizontal. 2: check vertical. 3: check diagonals
+
+        // return winner;
+
+        // No winner found
+        return null;
+    }
+
+    private void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    public boolean makeMove(int[] position)
+    {
+        if(board.setPlayerAtPosition(currentPlayer, position))
+        {
+            this.nextPlayer();
+            return true;
+        }
+        return false;
+    }
+
+    // TODO: change to private after testing
+    public void nextPlayer() {
 
         // Get actual player index
         int index = players.indexOf(currentPlayer);
@@ -52,15 +72,6 @@ public class Game implements Serializable {
         return "HOLAAA";
     }
 
-
-    public Player getWinner() {
-        // TODO: 1. check horizontal. 2: check vertical. 3: check diagonals
-
-        // return winner;
-
-        // No winner found
-        return null;
-    }
 
     public void resetBoard() {
         this.board = new Board();

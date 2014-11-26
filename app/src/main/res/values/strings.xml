@@ -19,5 +19,6 @@
     <string name="draw">Draw</string>
     <string name="back_to_main">Main Menu</string>
     <string name="play_again">Play Again</string>
+    <string name="invalid_move">Invalid Move</string>
 
 </resources>

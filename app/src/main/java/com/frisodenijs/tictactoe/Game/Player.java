@@ -17,6 +17,10 @@ public abstract class Player implements Serializable {
         this.mark = mark;
     }
 
+    public Icon getMark() {
+        return mark;
+    }
+
     @Override
     public String toString() {
 
