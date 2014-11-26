@@ -33,13 +33,26 @@ public class Game implements Serializable {
         return players;
     }
 
-    public Player getWinner() {
+    public Player checkWinner() {
         // TODO: 1. check horizontal. 2: check vertical. 3: check diagonals
+
+
 
         // return winner;
 
         // No winner found
         return null;
+    }
+
+    public boolean checkGameEnd()
+    {
+        // TODO: check board full, check winner
+        if(board.isFull())
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private void setCurrentPlayer(Player currentPlayer) {
@@ -67,11 +80,6 @@ public class Game implements Serializable {
         setCurrentPlayer(players.get(index));
 
     }
-
-    public String test() {
-        return "HOLAAA";
-    }
-
 
     public void resetBoard() {
         this.board = new Board();

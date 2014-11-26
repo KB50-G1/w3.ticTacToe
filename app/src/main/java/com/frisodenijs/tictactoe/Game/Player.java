@@ -21,6 +21,11 @@ public abstract class Player implements Serializable {
         return mark;
     }
 
+    public void makeMove()
+    {
+
+    }
+
     @Override
     public String toString() {
 

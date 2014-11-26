@@ -12,10 +12,10 @@
     <TableLayout
         android:id="@+id/playingField"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_gravity="top"
-        android:layout_weight="1">
+        >
 
         <TableRow
             android:layout_width="fill_parent"
@@ -24,29 +24,30 @@
 
             <Button
                 android:id="@+id/b00"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text=""/>
+                android:text=""
+                android:textSize="100sp"/>
 
             <Button
                 android:id="@+id/b01"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_column="1"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text=""/>
+                android:text=""
+                android:textSize="100sp"/>
 
             <Button
                 android:id="@+id/b02"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_column="2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text=""/>
+                android:text=""
+                android:textSize="100sp"/>
         </TableRow>
 
         <TableRow
@@ -56,29 +57,30 @@
 
             <Button
                 android:id="@+id/b10"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text=""/>
+                android:text=""
+                android:textSize="100sp"/>
 
             <Button
                 android:id="@+id/b11"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_column="1"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text=""/>
+                android:text=""
+                android:textSize="100sp"/>
 
             <Button
                 android:id="@+id/b12"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_column="2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text=""/>
+                android:text=""
+                android:textSize="100sp"/>
         </TableRow>
 
         <TableRow
@@ -88,29 +90,30 @@
 
             <Button
                 android:id="@+id/b20"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text=""/>
+                android:text=""
+                android:textSize="100sp"/>
 
             <Button
                 android:id="@+id/b21"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_column="1"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text=""/>
+                android:text=""
+                android:textSize="100sp"/>
 
             <Button
                 android:id="@+id/b22"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_column="2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_weight="1"
                 android:onClick="onClickField"
-                android:text=""/>
+                android:text=""
+                android:textSize="100sp"/>
         </TableRow>
     </TableLayout>
 
@@ -122,9 +125,9 @@
             android:id="@+id/playerInfo"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="@string/app_name"
-            android:textSize="25sp"
-            android:gravity="center">
+            android:textSize="25sp">
         </TextView>
 
     </LinearLayout>

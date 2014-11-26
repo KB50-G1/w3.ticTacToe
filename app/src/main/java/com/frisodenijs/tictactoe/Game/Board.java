@@ -39,11 +39,18 @@ public class Board implements Serializable {
 
     /**
      *
-     * @return
+     * @return boolean
      */
     public boolean isFull() {
         // TODO: loop through all board, if finds empty (null) cell, return false
-
+        for (Player[] aBoard : board) {
+            for (Player anABoard : aBoard) {
+                if (anABoard == null) {
+                    return false;
+                }
+            }
+        }
+        // Board is full
         return true;
     }
 

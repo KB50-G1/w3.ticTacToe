@@ -55,8 +55,6 @@ public class GameActivity extends ActionBarActivity {
             Log.d("GAME", "First time here!");
             Intent intent = getIntent();
             game = (Game) intent.getSerializableExtra("game");
-            // TODO: this shouldn't be necessary. Class is instantiated on the previous activity and sent through the intent.
-            game = new Game(new HumanPlayer(Player.Icon.DRAW_X), new HumanPlayer(Player.Icon.DRAW_O));
         }
     }
 
@@ -127,6 +125,10 @@ public class GameActivity extends ActionBarActivity {
                     if (game.makeMove(new int[]{i, j})) {
                         // If move is valid
                         this.updateGUI();
+                        if(game.checkGameEnd())
+                        {
+                            goToFinishGame();
+                        }
                     } else {
                         // If not, warn user of invalid move6
                         Toast.makeText(this, this.getResources().getString(R.string.invalid_move), Toast.LENGTH_SHORT).show();
@@ -147,6 +149,15 @@ public class GameActivity extends ActionBarActivity {
 
     public void onClickBack(View view) {
         Intent i = new Intent(this, MainMenuActivity.class);
+        startActivity(i);
+    }
+
+    public void goToFinishGame()
+    {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("game", game);
+        Intent i = new Intent(this, EndMenuActivity.class);
+        i.putExtras(bundle);
         startActivity(i);
     }
 }

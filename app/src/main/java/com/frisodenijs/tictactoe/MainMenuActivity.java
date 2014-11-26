@@ -23,7 +23,7 @@ public class MainMenuActivity extends ActionBarActivity {
 
         Game game = new Game(
                 new HumanPlayer(Player.Icon.DRAW_X),
-                new HumanPlayer(Player.Icon.DRAW_O)
+                new AIPlayer(Player.Icon.DRAW_O)
         );
 
         this.loadGameActivity(game);
@@ -33,7 +33,7 @@ public class MainMenuActivity extends ActionBarActivity {
 
         Game game = new Game(
                 new HumanPlayer(Player.Icon.DRAW_X),
-                new AIPlayer(Player.Icon.DRAW_O)
+                new HumanPlayer(Player.Icon.DRAW_O)
         );
 
         this.loadGameActivity(game);
@@ -45,6 +45,7 @@ public class MainMenuActivity extends ActionBarActivity {
         bundle.putSerializable("game", game);
 
         Intent i = new Intent(MainMenuActivity.this, GameActivity.class);
+        i.putExtras(bundle);
         startActivity(i);
     }
 
