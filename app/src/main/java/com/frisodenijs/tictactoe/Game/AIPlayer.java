@@ -9,6 +9,10 @@ public class AIPlayer extends Player {
         super(mark);
     }
 
+    public AIPlayer(Icon mark, String name) {
+        super(mark, name);
+    }
+
     @Override
     public int[] makeAutoMove() {
 
