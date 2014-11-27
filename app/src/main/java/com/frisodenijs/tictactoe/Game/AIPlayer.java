@@ -9,6 +9,10 @@ public class AIPlayer extends Player {
         super(mark);
     }
 
+    public AIPlayer(Icon mark, String name) {
+        super(mark, name);
+    }
+
     @Override
     public int[] makeAutoMove(Board board) {
 
@@ -107,6 +111,7 @@ public class AIPlayer extends Player {
         }
     }
 
+
     private int[] checkHorizontalWinning(Board board) {
         for (int y = 0; y < board.getBoard().length; y++) {
             int thisCounter = 0;
@@ -171,5 +176,6 @@ public class AIPlayer extends Player {
 
         return null;
     }
+
 
 }

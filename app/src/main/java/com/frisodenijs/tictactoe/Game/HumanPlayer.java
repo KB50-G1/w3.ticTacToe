@@ -9,8 +9,17 @@ public class HumanPlayer extends Player {
         super(mark);
     }
 
+    public HumanPlayer(Icon mark, String name) {
+        super(mark, name);
+    }
+
     @Override
     public int[] makeAutoMove() {
+        return new int[0];
+    }
+
+    @Override
+    public int[] makeAutoMove(Board board) {
         return new int[0];
     }
 }

@@ -9,12 +9,21 @@ public class RandomPlayer extends Player {
         super(mark);
     }
 
+    public RandomPlayer(Icon mark, String name) {
+        super(mark, name);
+    }
+
     @Override
     public int[] makeAutoMove() {
 
-        int randomX = (int) (Math.random() * 3);
-        int randomY = (int) (Math.random() * 3);
+            int randomX = (int) (Math.random() * 3);
+            int randomY = (int) (Math.random() * 3);
 
-        return new int[]{randomX, randomY};
+            return new int[]{randomX, randomY};
+    }
+
+    @Override
+    public int[] makeAutoMove(Board board) {
+        return new int[0];
     }
 }

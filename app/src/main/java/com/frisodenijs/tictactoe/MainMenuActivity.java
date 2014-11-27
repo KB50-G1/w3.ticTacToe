@@ -32,13 +32,13 @@ public class MainMenuActivity extends ActionBarActivity {
         {
             game = new Game(
                     new HumanPlayer(Player.Icon.DRAW_X),
-                    new AIPlayer(Player.Icon.DRAW_O)
+                    new HumanPlayer(Player.Icon.DRAW_O, "Louigi")
             );
         }
         else
         {
             game = new Game(
-                    new HumanPlayer(Player.Icon.DRAW_X),
+                    new RandomPlayer(Player.Icon.DRAW_X),
                     new RandomPlayer(Player.Icon.DRAW_O)
             );
         }
