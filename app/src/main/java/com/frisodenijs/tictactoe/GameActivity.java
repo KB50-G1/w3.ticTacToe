@@ -12,6 +12,9 @@ import android.widget.Toast;
 import com.frisodenijs.tictactoe.Game.Game;
 import com.frisodenijs.tictactoe.Game.Player;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class GameActivity extends ActionBarActivity {
 
@@ -111,7 +114,7 @@ public class GameActivity extends ActionBarActivity {
                     if (game.makeMove(new int[]{i, j})) {
                         // If move is valid
                         this.updateGUI();
-                        if (game.getLastWinner() != null) {
+                        if (game.checkGameEnd()) {
                             goToFinishGame();
                         }
                     } else {
@@ -137,12 +140,32 @@ public class GameActivity extends ActionBarActivity {
      */
 
     public void goToFinishGame() {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("game", game);
-        Intent i = new Intent(this, EndMenuActivity.class);
-        i.putExtras(bundle);
-        startActivity(i);
-        // Finish the activity so the user can't get back to the game with the finished board.
-        finish();
+
+        changeButtonsState(true);
+
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("game", game);
+                Intent i = new Intent(GameActivity.this, EndMenuActivity.class);
+                i.putExtras(bundle);
+
+                startActivity(i);
+                // Finish the activity so the user can't get back to the game with the finished board.
+                finish();
+            }
+        };
+
+        Timer timer = new Timer();
+        timer.schedule(task, 3000); // 3000ms = 3s
+    }
+
+    private void changeButtonsState(boolean boolState) {
+        for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 3; j++)
+            {
+                buttons[i][j].setEnabled(boolState);
+            }
     }
 }

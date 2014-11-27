@@ -43,7 +43,7 @@ public class Game implements Serializable {
     }
 
 
-    private boolean checkGameEnd() {
+    public boolean checkGameEnd() {
 
         Player winner = board.checkWinner();
         if (winner != null)
