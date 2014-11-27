@@ -47,6 +47,7 @@ public abstract class Player implements Serializable {
     }
 
     public abstract int[] makeAutoMove();
+    public abstract int[] makeAutoMove(Board board);
 
     @Override
     public String toString() {

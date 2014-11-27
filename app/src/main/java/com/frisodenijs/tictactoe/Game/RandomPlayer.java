@@ -21,4 +21,9 @@ public class RandomPlayer extends Player {
 
             return new int[]{randomX, randomY};
     }
+
+    @Override
+    public int[] makeAutoMove(Board board) {
+        return new int[0];
+    }
 }

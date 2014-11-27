@@ -17,4 +17,9 @@ public class HumanPlayer extends Player {
     public int[] makeAutoMove() {
         return new int[0];
     }
+
+    @Override
+    public int[] makeAutoMove(Board board) {
+        return new int[0];
+    }
 }

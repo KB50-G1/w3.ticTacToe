@@ -75,7 +75,7 @@ public class Game implements Serializable {
 
         // If Single Player, ask for computer move. ( Random, AI, or another player class that implements makeAutoMove() ).
         if (!(currentPlayer instanceof HumanPlayer)) {
-            while (!board.isFull() && !makeMove(currentPlayer.makeAutoMove()));
+            while (!board.isFull() && !makeMove(currentPlayer.makeAutoMove(this.board)));
         }
     }
 
