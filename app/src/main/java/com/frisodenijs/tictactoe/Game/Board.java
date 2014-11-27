@@ -21,6 +21,7 @@ public class Board implements Serializable {
         return board;
     }
 
+    // TODO: we really don't need this method?
     public Player getPlayerAtPosition(int[] position) {
         return board[position[0]][position[1]];
     }
@@ -31,7 +32,7 @@ public class Board implements Serializable {
 
     public boolean setPlayerAtPosition(Player player, int[] position) {
 
-        // TODO: 1: check valid position. 2: save reference of player there
+        // 1: check valid position. 2: save reference of player there
         if (board[position[0]][position[1]] == null) {
             this.board[position[0]][position[1]] = player;
             Log.d("BOARD", "Player: " + player.toString() + " added to " + Integer.toString(position[0]) + ", " + Integer.toString(position[1]));
@@ -47,7 +48,8 @@ public class Board implements Serializable {
      * @return boolean
      */
     public boolean isFull() {
-        // TODO: loop through all board, if finds empty (null) cell, return false
+
+        // Loop through all board, if finds empty (null) cell, return false
         for (Player[] aBoard : board) {
             for (Player anABoard : aBoard) {
                 if (anABoard == null) {
@@ -60,8 +62,8 @@ public class Board implements Serializable {
     }
 
     public Player checkWinner() {
-        // TODO: 1. check horizontal. 2: check vertical. 3: check diagonals
 
+        // 1. check horizontal. 2: check vertical. 3: check diagonals
         if(checkHorizontal() != null)
             winner = checkHorizontal();
         if(checkVertical() != null)
@@ -69,7 +71,7 @@ public class Board implements Serializable {
         if(checkDiagonal() != null)
             winner = checkDiagonal();
 
-        // Player if winner found, null otherwise;
+        // Return Player if winner is found, null otherwise (default is null when board is created).
         return winner;
     }
 

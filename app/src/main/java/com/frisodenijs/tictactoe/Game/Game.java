@@ -44,14 +44,12 @@ public class Game implements Serializable {
 
 
     public boolean checkGameEnd() {
-        // TODO: check board full, check winner
 
         Player winner = board.checkWinner();
         if (winner != null)
             winner.incrementWinsCount();
 
         return board.isFull() || winner != null;
-
     }
 
     private void setCurrentPlayer(Player currentPlayer) {
@@ -66,8 +64,7 @@ public class Game implements Serializable {
         return false;
     }
 
-    // TODO: change to private after testing
-    public void nextPlayer() {
+    private void nextPlayer() {
 
         // Get actual player index
         int index = players.indexOf(currentPlayer);
@@ -76,8 +73,9 @@ public class Game implements Serializable {
         // Set the other player as current
         setCurrentPlayer(players.get(index));
 
-        if (currentPlayer instanceof RandomPlayer) {
-            while (!board.isFull() && !makeMove(((RandomPlayer) currentPlayer).makeAutoMove())) ;
+        // If Single Player, ask for computer move. ( Random, AI, or another player class that implements makeAutoMove() ).
+        if (!(currentPlayer instanceof HumanPlayer)) {
+            while (!board.isFull() && !makeMove(currentPlayer.makeAutoMove()));
         }
     }
 

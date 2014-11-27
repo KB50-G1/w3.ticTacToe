@@ -9,6 +9,7 @@ public class RandomPlayer extends Player {
         super(mark);
     }
 
+    @Override
     public int[] makeAutoMove() {
 
         int randomX = (int) (Math.random() * 3);

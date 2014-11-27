@@ -8,7 +8,7 @@ import java.io.Serializable;
 public abstract class Player implements Serializable {
 
     private Icon mark;
-    private String name;
+    private String name = "Player";
     private int winsCount;
 
     public enum Icon {
@@ -20,13 +20,14 @@ public abstract class Player implements Serializable {
         this.winsCount = 0;
     }
 
-    public Icon getMark() {
-        return mark;
+    protected Player(Icon mark, String name) {
+        this.mark = mark;
+        this.name = name;
+        this.winsCount = 0;
     }
 
-    public void notifyToMove()
-    {
-
+    public Icon getMark() {
+        return mark;
     }
 
     public int getWinsCount() {
@@ -44,6 +45,8 @@ public abstract class Player implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public abstract int[] makeAutoMove();
 
     @Override
     public String toString() {

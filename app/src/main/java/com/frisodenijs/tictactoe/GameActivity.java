@@ -20,8 +20,6 @@ public class GameActivity extends ActionBarActivity {
     private TextView playerInfo;
     private Button[][] buttons;
 
-    // TODO: best way to store reference to all game buttons? i refuse to findById all 9 buttons lol
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +47,6 @@ public class GameActivity extends ActionBarActivity {
 
         // First time Activity is created, take data from the intent.
         if (savedInstanceState == null) {
-            // Toast.makeText(this, "First time here!", Toast.LENGTH_SHORT).show();
             Log.d("GAME", "First time here!");
             Intent intent = getIntent();
             game = (Game) intent.getSerializableExtra("game");
@@ -59,30 +56,21 @@ public class GameActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Toast.makeText(this, "Resuming...", Toast.LENGTH_SHORT).show();
         Log.d("GAME", "Resuming...");
-
-        // TODO: fill in buttons with the board info
-        // TODO: update user information. P1 or P2 turn, etc...
         updateGUI();
-
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
         outState.putSerializable("game", game);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        // Toast.makeText(this, "Restoring game!", Toast.LENGTH_SHORT).show();
         Log.d("GAME", "Restoring game...");
-
         this.game = (Game) savedInstanceState.getSerializable("game");
-
     }
 
     /*
@@ -95,7 +83,7 @@ public class GameActivity extends ActionBarActivity {
         Player[][] board = game.getBoard();
 
         for (int i = 0; i < 3; i++)
-                for (int j = 0; j < 3; j++) {
+            for (int j = 0; j < 3; j++) {
                 if (board[i][j] != null)
                     buttons[i][j].setText(board[i][j].toString());
                 else
@@ -105,7 +93,6 @@ public class GameActivity extends ActionBarActivity {
         playerInfo.setText("Current Player: " + game.getCurrentPlayer().toString());
 
     }
-
 
     /*
      * onClick Buttons functionality
@@ -123,8 +110,7 @@ public class GameActivity extends ActionBarActivity {
                     if (game.makeMove(new int[]{i, j})) {
                         // If move is valid
                         this.updateGUI();
-                        if(game.checkGameEnd())
-                        {
+                        if (game.checkGameEnd()) {
                             goToFinishGame();
                         }
                     } else {
@@ -145,12 +131,17 @@ public class GameActivity extends ActionBarActivity {
         startActivity(i);
     }
 
-    public void goToFinishGame()
-    {
+     /*
+     * onClick Buttons functionality
+     */
+
+    public void goToFinishGame() {
         Bundle bundle = new Bundle();
         bundle.putSerializable("game", game);
         Intent i = new Intent(this, EndMenuActivity.class);
         i.putExtras(bundle);
         startActivity(i);
+        // Finish the activity so the user can't get back to the game with the finished board.
+        finish();
     }
 }
