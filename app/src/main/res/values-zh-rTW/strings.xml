@@ -19,5 +19,6 @@
     <string name="draw">平手</string>
     <string name="back_to_main">回到主畫面</string>
     <string name="play_again">再來一次</string>
+    <string name="invalid_move">無效的點擊</string>
 
 </resources>
