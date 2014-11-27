@@ -3,6 +3,7 @@ package com.frisodenijs.tictactoe;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 
@@ -31,16 +32,17 @@ public class MainMenuActivity extends ActionBarActivity {
         if(hardMode.isChecked())
         {
             game = new Game(
-                    new HumanPlayer(Player.Icon.DRAW_X),
-                    new HumanPlayer(Player.Icon.DRAW_O, "Louigi")
+                    new RandomPlayer(Player.Icon.DRAW_X),
+                    new RandomPlayer(Player.Icon.DRAW_O)
             );
         }
         else
         {
             game = new Game(
-                    new RandomPlayer(Player.Icon.DRAW_X),
+                    new HumanPlayer(Player.Icon.DRAW_X),
                     new RandomPlayer(Player.Icon.DRAW_O)
             );
+            Log.d("RANDOM", "RANDOM VS RANDOM");
         }
 
         this.loadGameActivity(game);
