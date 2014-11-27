@@ -43,7 +43,7 @@ public class Game implements Serializable {
     }
 
 
-    public boolean checkGameEnd() {
+    private boolean checkGameEnd() {
 
         Player winner = board.checkWinner();
         if (winner != null)
@@ -56,6 +56,11 @@ public class Game implements Serializable {
         this.currentPlayer = currentPlayer;
     }
 
+    /**
+     *
+     * @param position Player selected position (move)
+     * @return true if moved, false if not
+     */
     public boolean makeMove(int[] position) {
         if (board.setPlayerAtPosition(currentPlayer, position)) {
             this.nextPlayer();
@@ -64,7 +69,8 @@ public class Game implements Serializable {
         return false;
     }
 
-    private void nextPlayer() {
+    // TODO: this should be private, not called from the activity.
+    public void nextPlayer() {
 
         // Get actual player index
         int index = players.indexOf(currentPlayer);
@@ -73,10 +79,18 @@ public class Game implements Serializable {
         // Set the other player as current
         setCurrentPlayer(players.get(index));
 
+        if(!checkGameEnd())
+            notifyPlayerToMove();
+
+    }
+
+    public void notifyPlayerToMove()
+    {
         // If Single Player, ask for computer move. ( Random, AI, or another player class that implements makeAutoMove() ).
         if (!(currentPlayer instanceof HumanPlayer)) {
             while (!board.isFull() && !makeMove(currentPlayer.makeAutoMove(this.board)));
         }
+
     }
 
     public void resetBoard() {
