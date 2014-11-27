@@ -25,4 +25,6 @@ public class AIPlayer extends Player {
 
         return new int[]{posX, posY};
     }
+
+
 }
