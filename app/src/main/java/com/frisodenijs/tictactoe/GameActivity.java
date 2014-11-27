@@ -50,6 +50,7 @@ public class GameActivity extends ActionBarActivity {
             Log.d("GAME", "First time here!");
             Intent intent = getIntent();
             game = (Game) intent.getSerializableExtra("game");
+            game.notifyPlayerToMove();
         }
     }
 
@@ -110,7 +111,7 @@ public class GameActivity extends ActionBarActivity {
                     if (game.makeMove(new int[]{i, j})) {
                         // If move is valid
                         this.updateGUI();
-                        if (game.checkGameEnd()) {
+                        if (game.getLastWinner() != null) {
                             goToFinishGame();
                         }
                     } else {
