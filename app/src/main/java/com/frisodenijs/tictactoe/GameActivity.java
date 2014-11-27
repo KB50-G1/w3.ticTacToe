@@ -65,6 +65,13 @@ public class GameActivity extends ActionBarActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        // If we don't delete the reference to the activity, it will crash because it's not Serializable.
+        game.setGameActivity(null);
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable("game", game);
