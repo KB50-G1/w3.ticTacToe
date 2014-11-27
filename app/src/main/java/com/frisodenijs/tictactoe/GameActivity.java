@@ -28,16 +28,9 @@ public class GameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        buttons = new Button[3][3];
         playerInfo = (TextView) findViewById(R.id.playerInfo);
 
-        // TODO: think about this. would be nice to avoid 9 lines of repeated code.
-        /*
-        for(int i = 0; i < 3; i++)
-            for(int j = 0; j < 3; j++)
-                buttons[i][j] = (Button) findViewById(R.id.b00);
-        */
-
+        buttons = new Button[3][3];
         buttons[0][0] = (Button) findViewById(R.id.b00);
         buttons[0][1] = (Button) findViewById(R.id.b01);
         buttons[0][2] = (Button) findViewById(R.id.b02);
@@ -48,7 +41,7 @@ public class GameActivity extends ActionBarActivity {
         buttons[2][1] = (Button) findViewById(R.id.b21);
         buttons[2][2] = (Button) findViewById(R.id.b22);
 
-        // First time Activity is created, take data from the intent.
+        // First time Activity is created, take data (game instance) from the intent.
         if (savedInstanceState == null) {
             Log.d("GAME", "First time here!");
             Intent intent = getIntent();
@@ -98,6 +91,14 @@ public class GameActivity extends ActionBarActivity {
 
     }
 
+    private void changeButtonsState(boolean boolState) {
+        for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 3; j++)
+            {
+                buttons[i][j].setEnabled(boolState);
+            }
+    }
+
     /*
      * onClick Buttons functionality
      */
@@ -136,7 +137,7 @@ public class GameActivity extends ActionBarActivity {
     }
 
      /*
-     * onClick Buttons functionality
+     * End game control
      */
 
     public void goToFinishGame() {
@@ -159,13 +160,5 @@ public class GameActivity extends ActionBarActivity {
 
         Timer timer = new Timer();
         timer.schedule(task, 3000); // 3000ms = 3s
-    }
-
-    private void changeButtonsState(boolean boolState) {
-        for(int i = 0; i < 3; i++)
-            for(int j = 0; j < 3; j++)
-            {
-                buttons[i][j].setEnabled(boolState);
-            }
     }
 }
