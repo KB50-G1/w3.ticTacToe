@@ -14,6 +14,11 @@ public class AIPlayer extends Player {
     }
 
     @Override
+    public int[] makeAutoMove() {
+        return new int[0];
+    }
+
+    @Override
     public int[] makeAutoMove(Board board) {
 
         // TODO: implement AI really difficult to understand methods.
@@ -51,13 +56,13 @@ public class AIPlayer extends Player {
         }
     }
 
+    //TODO
     private int[] forkingMove(Board board) {
-        //TODO
         return null;
     }
 
+    //TODO
     private int[] blockForkingMove(Board board) {
-        //TODO
         return null;
     }
 
@@ -173,6 +178,7 @@ public class AIPlayer extends Player {
         int thisCounter = 0;
         int otherCounter = 0;
         int[] position = null;
+
 
         return null;
     }
