@@ -33,8 +33,6 @@ public class GameActivity extends ActionBarActivity {
                 (TextView) findViewById(R.id.playerInfo2)
         };
 
-        playerInfo[1] = (TextView) findViewById(R.id.playerInfo2);
-
         buttons = new Button[3][3];
         buttons[0][0] = (Button) findViewById(R.id.b00);
         buttons[0][1] = (Button) findViewById(R.id.b01);
@@ -139,16 +137,13 @@ public class GameActivity extends ActionBarActivity {
 
     public void onClickField(View view) {
 
-        // TODO: do not update view directly. 1: Update board. 2: Re-draw the buttons
         Button buttonPressed = (Button) findViewById(view.getId());
 
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
                 if (buttonPressed.equals(buttons[i][j])) {
-
                     if (!game.makeMove(new int[]{i, j}))
                         Toast.makeText(this, this.getResources().getString(R.string.invalid_move), Toast.LENGTH_SHORT).show();
-
                 }
     }
 
@@ -164,6 +159,8 @@ public class GameActivity extends ActionBarActivity {
 
         Intent i = new Intent(this, MainMenuActivity.class);
         startActivity(i);
+
+        finish();
     }
 
      /*
@@ -177,21 +174,15 @@ public class GameActivity extends ActionBarActivity {
 
         updateGUI();
 
-        final DialogEndGame dialogFragment = DialogEndGame.newInstance(
-                "Player " + game.getLastWinner().toString() + " Wins!\n" +
-                "Want to play again?"
-        );
+        String dialogString;
+        if(game.getLastWinner() != null)
+            dialogString = "Player " + game.getLastWinner().toString() + " Wins!";
+        else
+            dialogString = getResources().getString(R.string.draw);
 
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                dialogFragment.show(getFragmentManager(), "dialog");
-            }
-        };
 
-        Timer timer = new Timer();
-        timer.schedule(task, 500);
-
+        DialogEndGame dialogFragment = DialogEndGame.newInstance(dialogString + "\nWant to play again?");
+        dialogFragment.show(getFragmentManager(), "dialog");
     }
 
     public void endGameDialogYes() {
