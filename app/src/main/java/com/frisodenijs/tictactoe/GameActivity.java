@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.frisodenijs.tictactoe.Game.Game;
 import com.frisodenijs.tictactoe.Game.Player;
 
+import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -46,7 +47,7 @@ public class GameActivity extends ActionBarActivity {
             Log.d("GAME", "First time here!");
             Intent intent = getIntent();
             game = (Game) intent.getSerializableExtra("game");
-            game.notifyPlayerToMove();
+            //game.notifyPlayerToMove();
         }
     }
 
@@ -54,6 +55,7 @@ public class GameActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
         Log.d("GAME", "Resuming...");
+        game.setGameActivity(this);
         updateGUI();
     }
 
@@ -74,9 +76,9 @@ public class GameActivity extends ActionBarActivity {
      * Board Management
      */
 
-    private void updateGUI() {
-        // TODO: get board status and update all buttons or imagebuttons in the activity
+    public void updateGUI() {
 
+        // TODO: get board status and update all buttons or imagebuttons in the activity
         Player[][] board = game.getBoard();
 
         for (int i = 0; i < 3; i++)
@@ -91,10 +93,10 @@ public class GameActivity extends ActionBarActivity {
 
     }
 
-    private void changeButtonsState(boolean boolState) {
-        for(int i = 0; i < 3; i++)
-            for(int j = 0; j < 3; j++)
-            {
+    public void changeButtonsState(boolean boolState) {
+
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++) {
                 buttons[i][j].setEnabled(boolState);
             }
     }
@@ -108,27 +110,20 @@ public class GameActivity extends ActionBarActivity {
         // TODO: do not update view directly. 1: Update board. 2: Re-draw the buttons
         Button buttonPressed = (Button) findViewById(view.getId());
 
+
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
                 if (buttonPressed.equals(buttons[i][j])) {
 
-                    if (game.makeMove(new int[]{i, j})) {
-                        // If move is valid
-                        this.updateGUI();
-                        if (game.checkGameEnd()) {
-                            goToFinishGame();
-                        }
-                    } else {
-                        // If not, warn user of invalid move
+                    if (!game.makeMove(new int[]{i, j}))
                         Toast.makeText(this, this.getResources().getString(R.string.invalid_move), Toast.LENGTH_SHORT).show();
-                    }
 
                 }
     }
 
     public void onClickRestart(View view) {
         game.resetBoard();
-        updateGUI();
+        this.updateGUI();
     }
 
     public void onClickBack(View view) {
@@ -140,13 +135,28 @@ public class GameActivity extends ActionBarActivity {
      * End game control
      */
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // If we don't delete the reference to the activity, it will crash because it's not Serializable.
+        // onPause is called after the new activity is created. Not valid to use this code here.
+        // game.setGameActivity(null);
+    }
+
     public void goToFinishGame() {
 
-        changeButtonsState(true);
+        // Disable all the buttons.
+        // changeButtonsState(false);
 
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
+
+                // If we don't delete the reference to the activity, it will crash because it's not Serializable.
+                game.setGameActivity(null);
+
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("game", game);
                 Intent i = new Intent(GameActivity.this, EndMenuActivity.class);
