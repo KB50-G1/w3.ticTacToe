@@ -14,28 +14,16 @@ public class AIPlayer extends Player {
     }
 
     @Override
-    public int[] makeAutoMove(Board board) {
-        return new int[0];
-    }
-
-    @Override
     public int[] makeAutoMove() {
         return new int[0];
     }
 
     @Override
     public int[] makeAutoMove(Board board) {
-
-        // TODO: implement AI really difficult to understand methods.
-
-        // TODO: this method needs to be able to read the board. How can we do this? Observer pattern?
-
         if (winningMove(board).length == 2) {
             return winningMove(board);
         } else if (forkingMove(board).length == 2) {
             return forkingMove(board);
-        } else if (blockForkingMove(board).length == 2) {
-            return blockForkingMove(board);
         } else if (centerMove(board).length == 2) {
             return centerMove(board);
         } else if (opposingCornerMove(board).length == 2) {
@@ -49,31 +37,40 @@ public class AIPlayer extends Player {
         }
     }
 
-    private int[] winningMove(Board board){
+    private int[] winningMove(Board board) {
         if (checkHorizontalWinning(board).length == 2) {
             return checkHorizontalWinning(board);
         } else if (checkVerticalWinning(board).length == 2) {
             return checkVerticalWinning(board);
-        } else if (checkDiagonalWinning(board).length == 2) {
-            return checkDiagonalWinning(board);
+        } else if (checkDiagonalLeftToRightWinning(board).length == 2) {
+            return checkDiagonalLeftToRightWinning(board);
+        } else if (checkDiagonalRightToLeftWinning(board).length == 2) {
+            return checkDiagonalRightToLeftWinning(board);
         } else {
             return null;
         }
     }
 
-    //TODO
     private int[] forkingMove(Board board) {
-        return null;
-    }
-
-    //TODO
-    private int[] blockForkingMove(Board board) {
-        return null;
+        if (board.getBoard()[0][0].getMark().equals(getMark()) &&
+                board.getBoard()[2][2].getMark().equals(getMark())) {
+            return emptyCornerMove(board);
+        } else if (board.getBoard()[0][2].getMark().equals(getMark()) &&
+                board.getBoard()[2][0].getMark().equals(getMark())) {
+            return  emptyCornerMove(board);
+        } else if (!board.getBoard()[0][0].getMark().equals(getMark()) ||
+                !board.getBoard()[2][2].getMark().equals(getMark()) ||
+                !board.getBoard()[0][2].getMark().equals(getMark()) ||
+                !board.getBoard()[2][0].getMark().equals(getMark())) {
+            return opposingCornerMove(board);
+        } else {
+            return null;
+        }
     }
 
     private int[] centerMove(Board board) {
         if (board.getBoard()[1][1] != null) {
-            return new int[] {1,1};
+            return new int[]{1, 1};
         } else {
             return null;
         }
@@ -81,13 +78,13 @@ public class AIPlayer extends Player {
 
     private int[] opposingCornerMove(Board board) {
         if ((!board.getBoard()[0][0].getMark().equals(getMark())) && board.getBoard()[2][2] != null) {
-            return new int[] {2,2};
+            return new int[]{2, 2};
         } else if ((!board.getBoard()[0][2].getMark().equals(getMark())) && board.getBoard()[2][0] != null) {
-            return new int[] {2,0};
+            return new int[]{2, 0};
         } else if ((!board.getBoard()[2][0].getMark().equals(getMark())) && board.getBoard()[0][2] != null) {
-            return new int[] {0,2};
-        }else if ((!board.getBoard()[2][2].getMark().equals(getMark())) && board.getBoard()[0][0] != null) {
-            return new int[] {0,0};
+            return new int[]{0, 2};
+        } else if ((!board.getBoard()[2][2].getMark().equals(getMark())) && board.getBoard()[0][0] != null) {
+            return new int[]{0, 0};
         } else {
             return null;
         }
@@ -95,13 +92,13 @@ public class AIPlayer extends Player {
 
     private int[] emptyCornerMove(Board board) {
         if (board.getBoard()[0][0] != null) {
-            return new int[] {0,0};
+            return new int[]{0, 0};
         } else if (board.getBoard()[0][2] != null) {
-            return new int[] {0,2};
+            return new int[]{0, 2};
         } else if (board.getBoard()[2][0] != null) {
-            return new int[] {2,0};
+            return new int[]{2, 0};
         } else if (board.getBoard()[2][2] != null) {
-            return new int[] {2,2};
+            return new int[]{2, 2};
         } else {
             return null;
         }
@@ -109,13 +106,13 @@ public class AIPlayer extends Player {
 
     private int[] emptySideMove(Board board) {
         if (board.getBoard()[0][1] != null) {
-            return new int[] {0,2};
+            return new int[]{0, 2};
         } else if (board.getBoard()[1][0] != null) {
-            return new int[] {1,0};
+            return new int[]{1, 0};
         } else if (board.getBoard()[1][2] != null) {
-            return new int[] {1,2};
+            return new int[]{1, 2};
         } else if (board.getBoard()[2][1] != null) {
-            return new int[] {2,1};
+            return new int[]{2, 1};
         } else {
             return null;
         }
@@ -178,15 +175,75 @@ public class AIPlayer extends Player {
         return null;
     }
 
-    //TODO
-    private int[] checkDiagonalWinning(Board board) {
+    private int[] checkDiagonalLeftToRightWinning(Board board) {
         int thisCounter = 0;
         int otherCounter = 0;
         int[] position = null;
 
+        for (int i = 0; i < 3; i++) {
+            if (board.getBoard()[i][i] != null) {
+                if (board.getBoard()[i][i].getMark().equals(getMark())) {
+                    thisCounter++;
+                    if (thisCounter == 2 && otherCounter == 0) {
+                        return position;
+                    }
+                } else if (!board.getBoard()[i][i].getMark().equals(getMark())) {
+                    otherCounter++;
+                    if (otherCounter == 2 && thisCounter == 0) {
+                        return position;
+                    }
+                }
+            } else {
+                position = new int[]{i, i};
+            }
+        }
 
         return null;
     }
 
 
+    private int[] checkDiagonalRightToLeftWinning(Board board) {
+        int thisCounter = 0;
+        int otherCounter = 0;
+        int[] position = null;
+
+        if (board.getBoard()[0][2] != null) {
+            if (board.getBoard()[0][2].getMark().equals(getMark())) {
+                thisCounter++;
+            } else if (!board.getBoard()[0][2].getMark().equals(getMark())) {
+                otherCounter++;
+            } else {
+            }
+        } else {
+            position = new int[]{0, 2};
+        }
+
+        if (board.getBoard()[1][1] != null) {
+            if (board.getBoard()[1][1].getMark().equals(getMark())) {
+                thisCounter++;
+            } else if (!board.getBoard()[1][1].getMark().equals(getMark())) {
+                otherCounter++;
+            } else {
+            }
+        } else {
+            position = new int[]{1, 1};
+        }
+
+        if (board.getBoard()[2][0] != null) {
+            if (board.getBoard()[2][0].getMark().equals(getMark())) {
+                thisCounter++;
+            } else if (!board.getBoard()[2][0].getMark().equals(getMark())) {
+                otherCounter++;
+            } else {
+            }
+        } else {
+            position = new int[]{2, 0};
+        }
+
+        if ((thisCounter == 2 && otherCounter == 0) || (otherCounter == 2 && thisCounter ==0)){
+            return position;
+        } else {
+            return null;
+        }
+    }
 }

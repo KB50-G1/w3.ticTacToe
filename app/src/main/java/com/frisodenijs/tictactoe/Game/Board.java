@@ -129,48 +129,6 @@ public class Board implements Serializable {
 
     // Checks if there are 3 in a row diagonally.
     public Player checkDiagonalLeftToRight() {
-        /**
-        if (board[0][0] != null) {
-            if (board[1][1] != null) {
-                if (board[2][2] != null) {
-                    if (board[0][0].getMark().equals(Player.Icon.DRAW_X) &&
-                            board[1][1].getMark().equals(Player.Icon.DRAW_X) &&
-                            board[2][2].getMark().equals(Player.Icon.DRAW_X)) {
-                        return board[0][0];
-                    } else if (board[0][0].getMark().equals(Player.Icon.DRAW_O) &&
-                            board[1][1].getMark().equals(Player.Icon.DRAW_O) &&
-                            board[2][2].getMark().equals(Player.Icon.DRAW_O)) {
-                        return board[0][0];
-                    } else {
-                        return null;
-                    }
-                }
-            } else {
-                return null;
-            }
-        } else if (board[0][2] != null) {
-            if (board[1][1] != null) {
-                if (board[2][0] != null) {
-                    if (board[0][2].getMark().equals(Player.Icon.DRAW_X) &&
-                            board[1][1].getMark().equals(Player.Icon.DRAW_X) &&
-                            board[2][0].getMark().equals(Player.Icon.DRAW_X)) {
-                        return board[2][0];
-                    } else if (board[2][0].getMark().equals(Player.Icon.DRAW_O) &&
-                            board[1][1].getMark().equals(Player.Icon.DRAW_O) &&
-                            board[0][2].getMark().equals(Player.Icon.DRAW_O)) {
-                        return board[2][0];
-                    } else {
-                        return null;
-                    }
-                }
-            } else {
-                return null;
-            }
-        } else {
-            return null;
-        }
-         */
-
         int counter = 0;
         for (int i = 0; i < 3; i++)
         {
@@ -193,26 +151,28 @@ public class Board implements Serializable {
         return null;
     }
 
-    //TODO
     public Player checkDiagonalRightToLeft() {
-        int counter = 0;
-        for (int i = 2; i > -1; i--) {
-            for (int j = 0; j < 3; j++) {
-                if (board[i][j] != null) {
-                    if (board[i][j].getMark().equals(Player.Icon.DRAW_X)) {
-                        counter++;
-                        if (counter == 3) {
-                            return board[i][j];
-                        }
-                    } else if (board[i][j].getMark().equals(Player.Icon.DRAW_O)) {
-                        counter--;
-                        if (counter == -3) {
-                            return board[i][j];
-                        }
+
+        if (board[0][2] != null) {
+            if (board[1][1] != null) {
+                if (board[2][0] != null) {
+                    if (board[0][2].getMark().equals(Player.Icon.DRAW_X) &&
+                            board[1][1].getMark().equals(Player.Icon.DRAW_X) &&
+                            board[2][0].getMark().equals(Player.Icon.DRAW_X)) {
+                        return board[2][0];
+                    } else if (board[2][0].getMark().equals(Player.Icon.DRAW_O) &&
+                            board[1][1].getMark().equals(Player.Icon.DRAW_O) &&
+                            board[0][2].getMark().equals(Player.Icon.DRAW_O)) {
+                        return board[2][0];
+                    } else {
+                        return null;
                     }
                 }
+            } else {
+                return null;
             }
         }
+
         return null;
     }
 
