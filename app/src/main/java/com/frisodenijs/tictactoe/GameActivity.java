@@ -1,9 +1,5 @@
 package com.frisodenijs.tictactoe;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -16,7 +12,6 @@ import android.widget.Toast;
 import com.frisodenijs.tictactoe.Game.Game;
 import com.frisodenijs.tictactoe.Game.Player;
 
-import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -66,6 +61,7 @@ public class GameActivity extends ActionBarActivity {
         game.setGameActivity(this);
         game.notifyPlayerToMove();
         updateGUI();
+        changeButtonsVisibility(game.getButtonsVisibility());
     }
 
     @Override
@@ -108,9 +104,21 @@ public class GameActivity extends ActionBarActivity {
             playerInfo[i].setText(game.getPlayer(i).toString() + ": " + game.getPlayer(i).getWinsCount());
         }
 
+        // Update restart button text
+        Button restartButton = (Button) findViewById(R.id.restartButton);
+
+        if(game.getLastWinner() != null)
+            restartButton.setText(getResources().getString(R.string.play_again));
+        else
+            restartButton.setText(getResources().getString(R.string.restart));
+
     }
 
-    public void changeButtonsState(boolean boolState) {
+    public void changeButtonsVisibility(boolean boolState) {
+
+        // Save the buttons state, to be able to recover it.
+        game.setButtonsVisibility(boolState);
+        Log.d("BUTTON", "Changed visibility to: " + Boolean.toString(boolState));
 
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
@@ -155,51 +163,28 @@ public class GameActivity extends ActionBarActivity {
      * End game control
      */
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        // If we don't delete the reference to the activity, it will crash because it's not Serializable.
-        // onPause is called after the new activity is created. Not valid to use this code here.
-        // game.setGameActivity(null);
-    }
-
     public void goToFinishGame() {
 
         // Disable all the buttons.
-        changeButtonsState(false);
+        changeButtonsVisibility(false);
 
         updateGUI();
 
-        DialogEndGame dialogFragment = DialogEndGame.newInstance(
+        final DialogEndGame dialogFragment = DialogEndGame.newInstance(
                 "Player " + game.getLastWinner().toString() + " Wins!\n" +
                 "Want to play again?"
         );
-        dialogFragment.show(getFragmentManager(), "dialog");
 
-        /*
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-
-                // If we don't delete the reference to the activity, it will crash because it's not Serializable.
-
-                game.setGameActivity(null);
-
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("game", game);
-                Intent i = new Intent(GameActivity.this, EndMenuActivity.class);
-                i.putExtras(bundle);
-
-                startActivity(i);
-                // Finish the activity so the user can't get back to the game with the finished board.
-                finish();
+                dialogFragment.show(getFragmentManager(), "dialog");
             }
         };
 
         Timer timer = new Timer();
-        timer.schedule(task, 3000); // 3000ms = 3s
-        */
+        timer.schedule(task, 500);
+
     }
 
     public void endGameDialogYes() {

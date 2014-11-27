@@ -14,6 +14,7 @@ public class Game implements Serializable {
     private Board board;
     private ArrayList<Player> players;
     private Player currentPlayer;
+    private boolean buttonsVisibility;
 
     private GameActivity gameActivity;
 
@@ -23,6 +24,15 @@ public class Game implements Serializable {
         players.add(p1);
         players.add(p2);
         this.currentPlayer = players.get(0);
+        this.setButtonsVisibility(true);
+    }
+
+    public boolean getButtonsVisibility() {
+        return buttonsVisibility;
+    }
+
+    public void setButtonsVisibility(boolean buttonsVisibility) {
+        this.buttonsVisibility = buttonsVisibility;
     }
 
     public void setPlayers(ArrayList<Player> players) {
@@ -78,7 +88,7 @@ public class Game implements Serializable {
     public boolean makeMove(int[] position) {
         if (board.setPlayerAtPosition(currentPlayer, position)) {
 
-            gameActivity.changeButtonsState(false);
+            gameActivity.changeButtonsVisibility(false);
 
             gameActivity.updateGUI();
 
@@ -112,7 +122,8 @@ public class Game implements Serializable {
         if (!(currentPlayer instanceof HumanPlayer)) {
             while (!board.isFull() && !makeMove(currentPlayer.makeAutoMove(this.board))) ;
         } else {
-            gameActivity.changeButtonsState(true);
+            if(getLastWinner() == null)
+                gameActivity.changeButtonsVisibility(true);
         }
     }
 
