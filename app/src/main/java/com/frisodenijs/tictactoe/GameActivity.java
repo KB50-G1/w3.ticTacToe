@@ -1,5 +1,9 @@
 package com.frisodenijs.tictactoe;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -21,7 +25,7 @@ public class GameActivity extends ActionBarActivity {
 
     private Game game;
 
-    private TextView playerInfo;
+    private TextView[] playerInfo;
     private Button[][] buttons;
 
     @Override
@@ -29,7 +33,12 @@ public class GameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        playerInfo = (TextView) findViewById(R.id.playerInfo);
+        playerInfo = new TextView[]{
+                (TextView) findViewById(R.id.playerInfo),
+                (TextView) findViewById(R.id.playerInfo2)
+        };
+
+        playerInfo[1] = (TextView) findViewById(R.id.playerInfo2);
 
         buttons = new Button[3][3];
         buttons[0][0] = (Button) findViewById(R.id.b00);
@@ -47,7 +56,6 @@ public class GameActivity extends ActionBarActivity {
             Log.d("GAME", "First time here!");
             Intent intent = getIntent();
             game = (Game) intent.getSerializableExtra("game");
-            //game.notifyPlayerToMove();
         }
     }
 
@@ -56,6 +64,7 @@ public class GameActivity extends ActionBarActivity {
         super.onResume();
         Log.d("GAME", "Resuming...");
         game.setGameActivity(this);
+        game.notifyPlayerToMove();
         updateGUI();
     }
 
@@ -78,9 +87,9 @@ public class GameActivity extends ActionBarActivity {
 
     public void updateGUI() {
 
-        // TODO: get board status and update all buttons or imagebuttons in the activity
         Player[][] board = game.getBoard();
 
+        // Update Board Buttons
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
                 if (board[i][j] != null)
@@ -89,7 +98,15 @@ public class GameActivity extends ActionBarActivity {
                     buttons[i][j].setText("");
             }
 
-        playerInfo.setText("Current Player: " + game.getCurrentPlayer().toString());
+        // Update Players Information
+        for (int i = 0; i < 2; i++) {
+            playerInfo[i].setEnabled(false);
+            if (game.getPlayer(i).equals(game.getCurrentPlayer())) {
+                playerInfo[i].setEnabled(true);
+            }
+
+            playerInfo[i].setText(game.getPlayer(i).toString() + ": " + game.getPlayer(i).getWinsCount());
+        }
 
     }
 
@@ -110,7 +127,6 @@ public class GameActivity extends ActionBarActivity {
         // TODO: do not update view directly. 1: Update board. 2: Re-draw the buttons
         Button buttonPressed = (Button) findViewById(view.getId());
 
-
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
                 if (buttonPressed.equals(buttons[i][j])) {
@@ -127,6 +143,10 @@ public class GameActivity extends ActionBarActivity {
     }
 
     public void onClickBack(View view) {
+
+        // If we don't delete the reference to the activity, it will crash because it's not Serializable.
+        game.setGameActivity(null);
+
         Intent i = new Intent(this, MainMenuActivity.class);
         startActivity(i);
     }
@@ -134,7 +154,6 @@ public class GameActivity extends ActionBarActivity {
      /*
      * End game control
      */
-
 
     @Override
     protected void onPause() {
@@ -148,13 +167,23 @@ public class GameActivity extends ActionBarActivity {
     public void goToFinishGame() {
 
         // Disable all the buttons.
-        // changeButtonsState(false);
+        changeButtonsState(false);
 
+        updateGUI();
+
+        DialogEndGame dialogFragment = DialogEndGame.newInstance(
+                "Player " + game.getLastWinner().toString() + " Wins!\n" +
+                "Want to play again?"
+        );
+        dialogFragment.show(getFragmentManager(), "dialog");
+
+        /*
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
 
                 // If we don't delete the reference to the activity, it will crash because it's not Serializable.
+
                 game.setGameActivity(null);
 
                 Bundle bundle = new Bundle();
@@ -170,5 +199,21 @@ public class GameActivity extends ActionBarActivity {
 
         Timer timer = new Timer();
         timer.schedule(task, 3000); // 3000ms = 3s
+        */
     }
+
+    public void endGameDialogYes() {
+        game.resetBoard();
+        updateGUI();
+    }
+
+    public void endGameDialogNo() {
+        // Why someone would press this button?
+    }
+
+
+
+
+
+
 }
