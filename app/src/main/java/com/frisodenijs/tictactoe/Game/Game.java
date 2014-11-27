@@ -85,6 +85,7 @@ public class Game implements Serializable {
             if (!checkGameEnd()) {
                 this.nextPlayer();
                 notifyPlayerToMove();
+                gameActivity.updateGUI();
             } else
                 gameActivity.goToFinishGame();
 
