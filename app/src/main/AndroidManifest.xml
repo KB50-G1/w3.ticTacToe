@@ -44,7 +44,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.frisodenijs.tictactoe.SettingsActivity"
+            android:name="com.frisodenijs.tictactoe.PreferencesActivity"
             android:label="@string/title_activity_settings" >
         </activity>
     </application>

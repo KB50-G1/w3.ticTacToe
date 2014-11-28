@@ -7,7 +7,7 @@
               android:paddingLeft="@dimen/activity_horizontal_margin"
               android:paddingRight="@dimen/activity_horizontal_margin"
               android:paddingTop="@dimen/activity_vertical_margin"
-              tools:context="com.frisodenijs.tictactoe.SettingsActivity">
+              tools:context="com.frisodenijs.tictactoe.PreferencesActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,6 +41,7 @@
                 />
 
             <EditText
+                android:id="@+id/playerOneName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -67,14 +68,14 @@
                         android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/playerX"
+                    android:id="@+id/playerOneIconX"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="20dp"
                     android:text="X"/>
 
                 <RadioButton
-                    android:id="@+id/playerO"
+                    android:id="@+id/playerOneIconO"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="20dp"
@@ -97,6 +98,7 @@
                 />
 
             <EditText
+                android:id="@+id/playerTwoName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -123,21 +125,21 @@
                         android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/firstPlayerX"
+                    android:id="@+id/firstMoveX"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="20dp"
                     android:text="X"/>
 
                 <RadioButton
-                    android:id="@+id/firstPlayerO"
+                    android:id="@+id/firstMoveO"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="20dp"
                     android:text="O"/>
 
                 <RadioButton
-                    android:id="@+id/firstPlayerXO"
+                    android:id="@+id/firstMoveXO"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="20dp"
@@ -152,6 +154,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:onClick="savePreferences"
         android:text="@string/save"/>
 
 </LinearLayout>
