@@ -203,9 +203,4 @@ public class GameActivity extends ActionBarActivity {
         // Why someone would press this button?
     }
 
-
-
-
-
-
 }

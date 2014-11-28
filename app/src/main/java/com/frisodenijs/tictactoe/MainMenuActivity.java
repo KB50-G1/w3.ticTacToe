@@ -64,7 +64,6 @@ public class MainMenuActivity extends ActionBarActivity {
         i.putExtras(bundle);
         startActivity(i);
 
-        finish();
     }
 
     public void goToSettings(View view) {
