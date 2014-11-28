@@ -5,13 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
 
 public class PreferencesActivity extends ActionBarActivity {
-
 
     SharedPreferences sharedPreferences;
 
@@ -59,7 +57,8 @@ public class PreferencesActivity extends ActionBarActivity {
     }
 
     public void savePreferences(View view) {
-        // Save things in sharedpreferences and go back
+
+        // Save things in Shared Preferences and go back to main menu
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putString("playerOneName", playerOneName.getText().toString());
@@ -74,6 +73,5 @@ public class PreferencesActivity extends ActionBarActivity {
 
         editor.commit();
         finish();
-
     }
 }

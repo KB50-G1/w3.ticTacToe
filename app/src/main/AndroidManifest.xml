@@ -35,15 +35,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.frisodenijs.tictactoe.EndMenuActivity"
-            android:label="@string/title_activity_end_menu" >
-            <intent-filter>
-                <action android:name="com.frisodenijs.ViewModel.EndMenuActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name="com.frisodenijs.tictactoe.PreferencesActivity"
             android:label="@string/title_activity_settings" >
         </activity>
