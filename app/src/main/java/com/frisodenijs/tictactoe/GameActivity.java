@@ -109,11 +109,13 @@ public class GameActivity extends ActionBarActivity {
         // Update Players Information
         for (int i = 0; i < 2; i++) {
             playersNames[i].setEnabled(false);
+            // playersNames[i].setBackgroundColor(getResources().getColor(R.color.white));
             if (game.getPlayer(i).equals(game.getCurrentPlayer())) {
                 playersNames[i].setEnabled(true);
+                // playersNames[i].setBackgroundColor(getResources().getColor(R.color.sea2));
             }
 
-            playersNames[i].setText(game.getPlayer(i).toString());
+            playersNames[i].setText(game.getPlayer(i).toString() + "\n" + game.getPlayer(i).getName());
             playersScores[i].setText(Integer.toString(game.getPlayer(i).getWinsCount()));
         }
 
