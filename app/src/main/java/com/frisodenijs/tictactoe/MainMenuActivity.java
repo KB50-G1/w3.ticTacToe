@@ -3,11 +3,9 @@ package com.frisodenijs.tictactoe;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 
-import com.frisodenijs.tictactoe.Game.AIPlayer;
 import com.frisodenijs.tictactoe.Game.Game;
 import com.frisodenijs.tictactoe.Game.HumanPlayer;
 import com.frisodenijs.tictactoe.Game.Player;
@@ -42,7 +40,6 @@ public class MainMenuActivity extends ActionBarActivity {
                     new RandomPlayer(Player.Icon.DRAW_X),
                     new HumanPlayer(Player.Icon.DRAW_O)
             );
-            Log.d("RANDOM", "RANDOM VS RANDOM");
         }
 
         this.loadGameActivity(game);
@@ -66,6 +63,12 @@ public class MainMenuActivity extends ActionBarActivity {
         Intent i = new Intent(MainMenuActivity.this, GameActivity.class);
         i.putExtras(bundle);
         startActivity(i);
+
+        finish();
     }
 
+    public void goToSettings(View view) {
+        Intent i = new Intent(this, PreferencesActivity.class);
+        startActivity(i);
+    }
 }

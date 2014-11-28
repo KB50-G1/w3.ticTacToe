@@ -21,7 +21,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/onePlayerButton"
@@ -35,9 +35,16 @@
             android:id="@+id/twoPlayerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/hardModeCheckBox"
             android:onClick="onClickTwoPlayers"
             android:text="@string/two_players"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/settingsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="goToSettings"
+            android:text="@string/action_settings"
             android:layout_weight="1"/>
 
 

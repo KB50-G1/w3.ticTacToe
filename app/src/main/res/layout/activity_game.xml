@@ -1,21 +1,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:paddingBottom="@dimen/activity_vertical_margin"
-              android:paddingLeft="@dimen/activity_horizontal_margin"
-              android:paddingRight="@dimen/activity_horizontal_margin"
-              android:paddingTop="@dimen/activity_vertical_margin"
-              tools:context="com.frisodenijs.tictactoe.GameActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.frisodenijs.tictactoe.GameActivity">
+
 
     <TableLayout
         android:id="@+id/playingField"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="top"
-        >
+        android:layout_width="@dimen/table_layout"
+        android:layout_height="@dimen/table_layout"
+        android:layout_gravity="center">
 
         <TableRow
             android:layout_width="fill_parent"
@@ -24,30 +23,30 @@
 
             <Button
                 android:id="@+id/b00"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:onClick="onClickField"
                 android:text=""
-                android:textSize="100sp"/>
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/b01"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:onClick="onClickField"
                 android:text=""
-                android:textSize="100sp"/>
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/b02"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:onClick="onClickField"
                 android:text=""
-                android:textSize="100sp"/>
+                android:textSize="25sp" />
         </TableRow>
 
         <TableRow
@@ -57,30 +56,30 @@
 
             <Button
                 android:id="@+id/b10"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:onClick="onClickField"
                 android:text=""
-                android:textSize="100sp"/>
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/b11"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:onClick="onClickField"
                 android:text=""
-                android:textSize="100sp"/>
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/b12"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:onClick="onClickField"
                 android:text=""
-                android:textSize="100sp"/>
+                android:textSize="25sp" />
         </TableRow>
 
         <TableRow
@@ -90,83 +89,154 @@
 
             <Button
                 android:id="@+id/b20"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:onClick="onClickField"
                 android:text=""
-                android:textSize="100sp"/>
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/b21"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:onClick="onClickField"
                 android:text=""
-                android:textSize="100sp"/>
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/b22"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:onClick="onClickField"
                 android:text=""
-                android:textSize="100sp"/>
+                android:textSize="25sp" />
         </TableRow>
     </TableLayout>
 
+
     <LinearLayout
+        android:id="@+id/score"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/playerInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="P1: 0"
-            android:textSize="25sp">
-        </TextView>
 
-        <TextView
-            android:id="@+id/playerInfo2"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/playerInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Player X:"
+                android:textSize="20sp"
+                android:maxLength="15" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:text="0"
+                android:maxLines="3" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_weight="1"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="P2: 0"
-            android:textSize="25sp">
-        </TextView>
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/playerDraw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Draw:"
+                android:textSize="20sp"
+                android:maxLength="15" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:text="0"
+                android:maxLines="3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/playerInfo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Player O:"
+                android:textSize="20sp"
+                android:maxLines="15" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:text="0"
+                android:maxLength="3" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/restartButton"
+        <LinearLayout
+            android:id="@+id/buttons"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:onClick="onClickRestart"
-            android:text="@string/restart"/>
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true" >
 
-        <Button
-            android:id="@+id/backToMenu"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onClickBack"
-            android:text="@string/back_to_main"/>
-    </LinearLayout>
+            <Button
+                android:id="@+id/restartButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onClickRestart"
+                android:text="@string/restart" />
 
+            <Button
+                android:id="@+id/backToMenu"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onClickBack"
+                android:text="@string/back_to_main" />
+        </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
