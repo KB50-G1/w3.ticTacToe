@@ -22,27 +22,28 @@
             android:layout_height="fill_parent"
             android:layout_weight="1">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/b00"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_weight="0"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
                 android:onClick="onClickField"
                 android:src="@drawable/ic_launcher"/>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/b01"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_weight="0"
+                android:layout_weight="1"
                 android:onClick="onClickField"
                 android:src="@drawable/ic_launcher"/>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/b02"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_weight="0"
+                android:layout_weight="1"
                 android:onClick="onClickField"
                 android:src="@drawable/ic_launcher"/>
         </TableRow>
@@ -52,27 +53,27 @@
             android:layout_height="fill_parent"
             android:layout_weight="1">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/b10"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_weight="0"
+                android:layout_weight="1"
                 android:onClick="onClickField"
                 android:src="@drawable/ic_launcher"/>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/b11"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_weight="0"
+                android:layout_weight="1"
                 android:onClick="onClickField"
                 android:src="@drawable/ic_launcher"/>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/b12"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_weight="0"
+                android:layout_weight="1"
                 android:onClick="onClickField"
                 android:src="@drawable/ic_launcher"/>
         </TableRow>
@@ -82,27 +83,27 @@
             android:layout_height="fill_parent"
             android:layout_weight="1">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/b20"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_weight="0"
+                android:layout_weight="1"
                 android:onClick="onClickField"
                 android:src="@drawable/ic_launcher"/>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/b21"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_weight="0"
+                android:layout_weight="1"
                 android:onClick="onClickField"
                 android:src="@drawable/ic_launcher"/>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/b22"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_weight="0"
+                android:layout_weight="1"
                 android:onClick="onClickField"
                 android:src="@drawable/ic_launcher"/>
         </TableRow>
