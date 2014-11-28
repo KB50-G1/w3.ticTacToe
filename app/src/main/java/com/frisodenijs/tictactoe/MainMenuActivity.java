@@ -42,7 +42,6 @@ public class MainMenuActivity extends ActionBarActivity {
                     new RandomPlayer(Player.Icon.DRAW_X),
                     new HumanPlayer(Player.Icon.DRAW_O)
             );
-            Log.d("RANDOM", "RANDOM VS RANDOM");
         }
 
         this.loadGameActivity(game);
@@ -66,6 +65,8 @@ public class MainMenuActivity extends ActionBarActivity {
         Intent i = new Intent(MainMenuActivity.this, GameActivity.class);
         i.putExtras(bundle);
         startActivity(i);
+
+        finish();
     }
 
 }
