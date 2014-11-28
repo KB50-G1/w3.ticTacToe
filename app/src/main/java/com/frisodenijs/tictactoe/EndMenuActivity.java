@@ -49,7 +49,7 @@ public class EndMenuActivity extends ActionBarActivity {
         );
 
         // Reset the board, in case the player wants to play again.
-        game.resetBoard();
+        // game.resetBoard();
     }
 
     @Override

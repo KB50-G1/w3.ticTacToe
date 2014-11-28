@@ -39,8 +39,8 @@ public class MainMenuActivity extends ActionBarActivity {
         else
         {
             game = new Game(
-                    new HumanPlayer(Player.Icon.DRAW_X),
-                    new RandomPlayer(Player.Icon.DRAW_O)
+                    new RandomPlayer(Player.Icon.DRAW_X),
+                    new HumanPlayer(Player.Icon.DRAW_O)
             );
             Log.d("RANDOM", "RANDOM VS RANDOM");
         }

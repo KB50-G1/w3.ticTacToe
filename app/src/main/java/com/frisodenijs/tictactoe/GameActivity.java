@@ -12,12 +12,15 @@ import android.widget.Toast;
 import com.frisodenijs.tictactoe.Game.Game;
 import com.frisodenijs.tictactoe.Game.Player;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class GameActivity extends ActionBarActivity {
 
     private Game game;
 
-    private TextView playerInfo;
+    private TextView[] playerInfo;
     private Button[][] buttons;
 
     @Override
@@ -25,16 +28,12 @@ public class GameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        playerInfo = new TextView[]{
+                (TextView) findViewById(R.id.playerInfo),
+                (TextView) findViewById(R.id.playerInfo2)
+        };
+
         buttons = new Button[3][3];
-        playerInfo = (TextView) findViewById(R.id.playerInfo);
-
-        // TODO: think about this. would be nice to avoid 9 lines of repeated code.
-        /*
-        for(int i = 0; i < 3; i++)
-            for(int j = 0; j < 3; j++)
-                buttons[i][j] = (Button) findViewById(R.id.b00);
-        */
-
         buttons[0][0] = (Button) findViewById(R.id.b00);
         buttons[0][1] = (Button) findViewById(R.id.b01);
         buttons[0][2] = (Button) findViewById(R.id.b02);
@@ -45,12 +44,11 @@ public class GameActivity extends ActionBarActivity {
         buttons[2][1] = (Button) findViewById(R.id.b21);
         buttons[2][2] = (Button) findViewById(R.id.b22);
 
-        // First time Activity is created, take data from the intent.
+        // First time Activity is created, take data (game instance) from the intent.
         if (savedInstanceState == null) {
             Log.d("GAME", "First time here!");
             Intent intent = getIntent();
             game = (Game) intent.getSerializableExtra("game");
-            game.notifyPlayerToMove();
         }
     }
 
@@ -58,7 +56,17 @@ public class GameActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
         Log.d("GAME", "Resuming...");
+        game.setGameActivity(this);
+        game.notifyPlayerToMove();
         updateGUI();
+        changeButtonsVisibility(game.getButtonsVisibility());
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // If we don't delete the reference to the activity, it will crash because it's not Serializable.
+        game.setGameActivity(null);
     }
 
     @Override
@@ -78,11 +86,11 @@ public class GameActivity extends ActionBarActivity {
      * Board Management
      */
 
-    private void updateGUI() {
-        // TODO: get board status and update all buttons or imagebuttons in the activity
+    public void updateGUI() {
 
         Player[][] board = game.getBoard();
 
+        // Update Board Buttons
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
                 if (board[i][j] != null)
@@ -91,8 +99,36 @@ public class GameActivity extends ActionBarActivity {
                     buttons[i][j].setText("");
             }
 
-        playerInfo.setText("Current Player: " + game.getCurrentPlayer().toString());
+        // Update Players Information
+        for (int i = 0; i < 2; i++) {
+            playerInfo[i].setEnabled(false);
+            if (game.getPlayer(i).equals(game.getCurrentPlayer())) {
+                playerInfo[i].setEnabled(true);
+            }
 
+            playerInfo[i].setText(game.getPlayer(i).toString() + ": " + game.getPlayer(i).getWinsCount());
+        }
+
+        // Update restart button text
+        Button restartButton = (Button) findViewById(R.id.restartButton);
+
+        if(game.getLastWinner() != null)
+            restartButton.setText(getResources().getString(R.string.play_again));
+        else
+            restartButton.setText(getResources().getString(R.string.restart));
+
+    }
+
+    public void changeButtonsVisibility(boolean boolState) {
+
+        // Save the buttons state, to be able to recover it.
+        game.setButtonsVisibility(boolState);
+        Log.d("BUTTON", "Changed visibility to: " + Boolean.toString(boolState));
+
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++) {
+                buttons[i][j].setEnabled(boolState);
+            }
     }
 
     /*
@@ -101,48 +137,66 @@ public class GameActivity extends ActionBarActivity {
 
     public void onClickField(View view) {
 
-        // TODO: do not update view directly. 1: Update board. 2: Re-draw the buttons
         Button buttonPressed = (Button) findViewById(view.getId());
 
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
                 if (buttonPressed.equals(buttons[i][j])) {
-
-                    if (game.makeMove(new int[]{i, j})) {
-                        // If move is valid
-                        this.updateGUI();
-                        if (game.getLastWinner() != null) {
-                            goToFinishGame();
-                        }
-                    } else {
-                        // If not, warn user of invalid move
+                    if (!game.makeMove(new int[]{i, j}))
                         Toast.makeText(this, this.getResources().getString(R.string.invalid_move), Toast.LENGTH_SHORT).show();
-                    }
-
                 }
     }
 
     public void onClickRestart(View view) {
         game.resetBoard();
-        updateGUI();
+        this.updateGUI();
     }
 
     public void onClickBack(View view) {
+
+        // If we don't delete the reference to the activity, it will crash because it's not Serializable.
+        game.setGameActivity(null);
+
         Intent i = new Intent(this, MainMenuActivity.class);
         startActivity(i);
+
+        finish();
     }
 
      /*
-     * onClick Buttons functionality
+     * End game control
      */
 
     public void goToFinishGame() {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("game", game);
-        Intent i = new Intent(this, EndMenuActivity.class);
-        i.putExtras(bundle);
-        startActivity(i);
-        // Finish the activity so the user can't get back to the game with the finished board.
-        finish();
+
+        // Disable all the buttons.
+        changeButtonsVisibility(false);
+
+        updateGUI();
+
+        String dialogString;
+        if(game.getLastWinner() != null)
+            dialogString = "Player " + game.getLastWinner().toString() + " Wins!";
+        else
+            dialogString = getResources().getString(R.string.draw);
+
+
+        DialogEndGame dialogFragment = DialogEndGame.newInstance(dialogString + "\nWant to play again?");
+        dialogFragment.show(getFragmentManager(), "dialog");
     }
+
+    public void endGameDialogYes() {
+        game.resetBoard();
+        updateGUI();
+    }
+
+    public void endGameDialogNo() {
+        // Why someone would press this button?
+    }
+
+
+
+
+
+
 }
