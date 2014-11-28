@@ -1,5 +1,7 @@
 package com.frisodenijs.tictactoe.Game;
 
+import android.util.Log;
+
 /**
  * Created by Friso on 14/11/25.
  */
@@ -20,33 +22,50 @@ public class AIPlayer extends Player {
 
     @Override
     public int[] makeAutoMove(Board board) {
+        try {
         if (winningMove(board).length == 2) {
+            Log.d("AI", "Winning Move");
             return winningMove(board);
         } else if (forkingMove(board).length == 2) {
+            Log.d("AI", "forking move");
             return forkingMove(board);
         } else if (centerMove(board).length == 2) {
+            Log.d("AI", "center move");
             return centerMove(board);
         } else if (opposingCornerMove(board).length == 2) {
+            Log.d("AI", "opposing corner move");
             return opposingCornerMove(board);
         } else if (emptyCornerMove(board).length == 2) {
+            Log.d("AI", "empty corner move");
             return emptyCornerMove(board);
         } else if (emptySideMove(board).length == 2) {
+            Log.d("AI", "empty side move");
             return emptySideMove(board);
         } else {
+            Log.d("AI", "failed to move");
+            return null;
+        }
+        } catch (NullPointerException e) {
+            Log.d("AI.makeAutoMove()", board.toString());
             return null;
         }
     }
 
     private int[] winningMove(Board board) {
-        if (checkHorizontalWinning(board).length == 2) {
-            return checkHorizontalWinning(board);
-        } else if (checkVerticalWinning(board).length == 2) {
-            return checkVerticalWinning(board);
-        } else if (checkDiagonalLeftToRightWinning(board).length == 2) {
-            return checkDiagonalLeftToRightWinning(board);
-        } else if (checkDiagonalRightToLeftWinning(board).length == 2) {
-            return checkDiagonalRightToLeftWinning(board);
-        } else {
+        try {
+            if (checkHorizontalWinning(board).length == 2) {
+                return checkHorizontalWinning(board);
+            } else if (checkVerticalWinning(board).length == 2) {
+                return checkVerticalWinning(board);
+            } else if (checkDiagonalLeftToRightWinning(board).length == 2) {
+                return checkDiagonalLeftToRightWinning(board);
+            } else if (checkDiagonalRightToLeftWinning(board).length == 2) {
+                return checkDiagonalRightToLeftWinning(board);
+            } else {
+                return new int[0];
+            }
+        }catch (NullPointerException e) {
+            Log.d("AI, Winning Move", board.toString());
             return null;
         }
     }
@@ -64,7 +83,7 @@ public class AIPlayer extends Player {
                 !board.getBoard()[2][0].getMark().equals(getMark())) {
             return opposingCornerMove(board);
         } else {
-            return null;
+            return new int[0];
         }
     }
 
@@ -72,7 +91,7 @@ public class AIPlayer extends Player {
         if (board.getBoard()[1][1] != null) {
             return new int[]{1, 1};
         } else {
-            return null;
+            return new int[0];
         }
     }
 
@@ -86,7 +105,7 @@ public class AIPlayer extends Player {
         } else if ((!board.getBoard()[2][2].getMark().equals(getMark())) && board.getBoard()[0][0] != null) {
             return new int[]{0, 0};
         } else {
-            return null;
+            return new int[0];
         }
     }
 
@@ -100,7 +119,7 @@ public class AIPlayer extends Player {
         } else if (board.getBoard()[2][2] != null) {
             return new int[]{2, 2};
         } else {
-            return null;
+            return new int[0];
         }
     }
 
@@ -114,7 +133,7 @@ public class AIPlayer extends Player {
         } else if (board.getBoard()[2][1] != null) {
             return new int[]{2, 1};
         } else {
-            return null;
+            return new int[0];
         }
     }
 
@@ -144,7 +163,7 @@ public class AIPlayer extends Player {
                 }
             }
         }
-        return null;
+        return new int[0];
     }
 
     private int[] checkVerticalWinning(Board board) {
@@ -172,7 +191,7 @@ public class AIPlayer extends Player {
                 }
             }
         }
-        return null;
+        return new int[0];
     }
 
     private int[] checkDiagonalLeftToRightWinning(Board board) {
@@ -198,7 +217,7 @@ public class AIPlayer extends Player {
             }
         }
 
-        return null;
+        return new int[0];
     }
 
 
@@ -240,10 +259,10 @@ public class AIPlayer extends Player {
             position = new int[]{2, 0};
         }
 
-        if ((thisCounter == 2 && otherCounter == 0) || (otherCounter == 2 && thisCounter ==0)){
+        if ((thisCounter == 2 && otherCounter == 0) || (otherCounter == 2 && thisCounter == 0)){
             return position;
         } else {
-            return null;
+            return new int[0];
         }
     }
 }

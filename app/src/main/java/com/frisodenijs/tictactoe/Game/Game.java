@@ -1,6 +1,8 @@
 package com.frisodenijs.tictactoe.Game;
 
 
+import android.util.Log;
+
 import com.frisodenijs.tictactoe.GameActivity;
 
 import java.io.Serializable;
@@ -120,7 +122,11 @@ public class Game implements Serializable {
     public void notifyPlayerToMove() {
         // If Single Player, ask for computer move. ( Random, AI, or another player class that implements makeAutoMove() ).
         if (!(currentPlayer instanceof HumanPlayer)) {
-            while (!board.isFull() && !makeMove(currentPlayer.makeAutoMove(this.board))) ;
+            try {
+                while (!board.isFull() && !makeMove(currentPlayer.makeAutoMove(this.board))) ;
+            } catch (NullPointerException e) {
+                Log.d("Game, notifyPlayerToMove()", board.toString());
+            }
         } else {
             if(getLastWinner() == null)
                 gameActivity.changeButtonsVisibility(true);

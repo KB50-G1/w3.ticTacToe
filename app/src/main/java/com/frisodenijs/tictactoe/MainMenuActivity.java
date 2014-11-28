@@ -32,9 +32,10 @@ public class MainMenuActivity extends ActionBarActivity {
         if(hardMode.isChecked())
         {
             game = new Game(
-                    new RandomPlayer(Player.Icon.DRAW_X),
-                    new RandomPlayer(Player.Icon.DRAW_O)
+                    new AIPlayer(Player.Icon.DRAW_X),
+                    new HumanPlayer(Player.Icon.DRAW_O)
             );
+            Log.d("MainMenuActivity", "Hard Mode");
         }
         else
         {
