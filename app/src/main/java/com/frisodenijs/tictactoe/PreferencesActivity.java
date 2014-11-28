@@ -27,8 +27,8 @@ public class PreferencesActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        playerOneName = (EditText) findViewById(R.id.playerOneName);
-        playerTwoName = (EditText) findViewById(R.id.playerTwoName);
+        playerOneName = (EditText) findViewById(R.id.setPlayerOneName);
+        playerTwoName = (EditText) findViewById(R.id.setPlayerTwoName);
 
         playerOneIconX = (RadioButton) findViewById(R.id.playerOneIconX);
         playerOneIconO = (RadioButton) findViewById(R.id.playerOneIconO);

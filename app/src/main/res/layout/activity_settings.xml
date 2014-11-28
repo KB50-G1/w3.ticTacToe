@@ -41,7 +41,7 @@
                 />
 
             <EditText
-                android:id="@+id/playerOneName"
+                android:id="@+id/setPlayerOneName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -98,7 +98,7 @@
                 />
 
             <EditText
-                android:id="@+id/playerTwoName"
+                android:id="@+id/setPlayerTwoName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
