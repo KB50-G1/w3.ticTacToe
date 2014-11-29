@@ -18,11 +18,17 @@ public class MainMenuActivity extends ActionBarActivity {
 
     SharedPreferences sharedPreferences;
 
+    String playerOneName;
+    String playerTwoName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
          sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+        playerOneName = sharedPreferences.getString("playerOneName", "Player 1");
+        playerTwoName = sharedPreferences.getString("playerTwoName", "Player 2");
     }
 
     private int selectFirstPlayer()
@@ -57,16 +63,16 @@ public class MainMenuActivity extends ActionBarActivity {
         if(sharedPreferences.getBoolean("hardMode", false))
         {
             game = new Game(
-                    new RandomPlayer(selectIcon(0)),
-                    new RandomPlayer(selectIcon(1)),
+                    new RandomPlayer(selectIcon(0), playerOneName),
+                    new RandomPlayer(selectIcon(1), playerTwoName),
                     this.selectFirstPlayer()
             );
         }
         else
         {
             game = new Game(
-                    new HumanPlayer(selectIcon(0)),
-                    new RandomPlayer(selectIcon(1)),
+                    new HumanPlayer(selectIcon(0),playerOneName),
+                    new RandomPlayer(selectIcon(1),playerTwoName),
                     this.selectFirstPlayer()
             );
         }
@@ -77,8 +83,8 @@ public class MainMenuActivity extends ActionBarActivity {
     public void onClickTwoPlayers(View view) {
 
         Game game = new Game(
-                new HumanPlayer(selectIcon(0)),
-                new HumanPlayer(selectIcon(1)),
+                new HumanPlayer(selectIcon(0),playerOneName),
+                new HumanPlayer(selectIcon(1),playerTwoName),
                 this.selectFirstPlayer()
         );
 
