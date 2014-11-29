@@ -32,8 +32,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickField"
-                android:text=""
-                android:textSize="25sp"
+                android:textSize="50sp"
                 />
 
             <Button
@@ -43,8 +42,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickField"
-                android:text=""
-                android:textSize="25sp"
+                android:textSize="50sp"
                 />
 
             <Button
@@ -54,8 +52,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickField"
-                android:text=""
-                android:textSize="25sp"
+                android:textSize="50sp"
                 />
         </TableRow>
 
@@ -71,8 +68,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickField"
-                android:text=""
-                android:textSize="25sp"
+                android:textSize="50sp"
                 />
 
             <Button
@@ -82,8 +78,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickField"
-                android:text=""
-                android:textSize="25sp"
+                android:textSize="50sp"
                 />
 
             <Button
@@ -93,8 +88,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickField"
-                android:text=""
-                android:textSize="25sp"
+                android:textSize="50sp"
                 />
         </TableRow>
 
@@ -110,8 +104,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickField"
-                android:text=""
-                android:textSize="25sp"
+                android:textSize="50sp"
                 />
 
             <Button
@@ -121,8 +114,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickField"
-                android:text=""
-                android:textSize="25sp"
+                android:textSize="50sp"
                 />
 
             <Button
@@ -132,8 +124,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickField"
-                android:text=""
-                android:textSize="25sp"
+                android:textSize="50sp"
                 />
         </TableRow>
     </TableLayout>
@@ -143,8 +134,8 @@
         android:id="@+id/score"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
