@@ -20,7 +20,8 @@ public class GameActivity extends ActionBarActivity {
 
     private Game game;
 
-    private TextView[] playerInfo;
+    private TextView[] playersNames;
+    private TextView[] playersScores;
     private Button[][] buttons;
 
     @Override
@@ -28,9 +29,15 @@ public class GameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        playerInfo = new TextView[]{
-                (TextView) findViewById(R.id.playerInfo),
-                (TextView) findViewById(R.id.playerInfo2)
+
+        playersNames = new TextView[]{
+                (TextView) findViewById(R.id.playerOneName),
+                (TextView) findViewById(R.id.playerTwoName)
+        };
+
+        playersScores = new TextView[]{
+                (TextView) findViewById(R.id.playerOneScores),
+                (TextView) findViewById(R.id.playerTwoScores)
         };
 
         buttons = new Button[3][3];
@@ -101,12 +108,15 @@ public class GameActivity extends ActionBarActivity {
 
         // Update Players Information
         for (int i = 0; i < 2; i++) {
-            playerInfo[i].setEnabled(false);
+            playersNames[i].setEnabled(false);
+            // playersNames[i].setBackgroundColor(getResources().getColor(R.color.white));
             if (game.getPlayer(i).equals(game.getCurrentPlayer())) {
-                playerInfo[i].setEnabled(true);
+                playersNames[i].setEnabled(true);
+                // playersNames[i].setBackgroundColor(getResources().getColor(R.color.sea2));
             }
 
-            playerInfo[i].setText(game.getPlayer(i).toString() + ": " + game.getPlayer(i).getWinsCount());
+            playersNames[i].setText(game.getPlayer(i).toString() + "\n" + game.getPlayer(i).getName());
+            playersScores[i].setText(Integer.toString(game.getPlayer(i).getWinsCount()));
         }
 
         // Update restart button text
@@ -180,7 +190,6 @@ public class GameActivity extends ActionBarActivity {
         else
             dialogString = getResources().getString(R.string.draw);
 
-
         DialogEndGame dialogFragment = DialogEndGame.newInstance(dialogString + "\nWant to play again?");
         dialogFragment.show(getFragmentManager(), "dialog");
     }
@@ -193,10 +202,5 @@ public class GameActivity extends ActionBarActivity {
     public void endGameDialogNo() {
         // Why someone would press this button?
     }
-
-
-
-
-
 
 }

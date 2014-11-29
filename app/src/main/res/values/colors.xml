@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="white">#FFFFFF</color>
+
     <color name="sea1">#CFF09E</color>
     <color name="sea2">#A8DBA8</color>
     <color name="sea3">#79BD9A</color>

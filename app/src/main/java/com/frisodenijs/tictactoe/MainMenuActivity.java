@@ -1,6 +1,8 @@
 package com.frisodenijs.tictactoe;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -14,31 +16,58 @@ import com.frisodenijs.tictactoe.Game.RandomPlayer;
 
 public class MainMenuActivity extends ActionBarActivity {
 
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+         sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
     }
 
-    // TODO: give the change to change player name (both players), and draw icon to the first one.
+    private int selectFirstPlayer()
+    {
+        if(sharedPreferences.getBoolean("firstMoveX", true))
+            return 0;
+        else if(sharedPreferences.getBoolean("firstMoveO", false))
+            return 1;
+
+        return 2;
+    }
+
+    private Player.Icon selectIcon(int playerNumber)
+    {
+        if(playerNumber == 0)
+        {
+            if(sharedPreferences.getBoolean("playerOneIconX", true))
+                return Player.Icon.DRAW_X;
+            return Player.Icon.DRAW_O;
+        }
+
+        if(sharedPreferences.getBoolean("playerOneIconX", true))
+            return Player.Icon.DRAW_O;
+        return Player.Icon.DRAW_X;
+
+    }
 
     public void onClickOnePlayer(View view) {
 
         Game game;
-        CheckBox hardMode = (CheckBox) findViewById(R.id.hardModeCheckBox);
 
-        if(hardMode.isChecked())
+        if(sharedPreferences.getBoolean("hardMode", false))
         {
             game = new Game(
-                    new RandomPlayer(Player.Icon.DRAW_X),
-                    new RandomPlayer(Player.Icon.DRAW_O)
+                    new RandomPlayer(selectIcon(0)),
+                    new RandomPlayer(selectIcon(1)),
+                    this.selectFirstPlayer()
             );
         }
         else
         {
             game = new Game(
-                    new RandomPlayer(Player.Icon.DRAW_X),
-                    new HumanPlayer(Player.Icon.DRAW_O)
+                    new HumanPlayer(selectIcon(0)),
+                    new RandomPlayer(selectIcon(1)),
+                    this.selectFirstPlayer()
             );
         }
 
@@ -48,8 +77,9 @@ public class MainMenuActivity extends ActionBarActivity {
     public void onClickTwoPlayers(View view) {
 
         Game game = new Game(
-                new HumanPlayer(Player.Icon.DRAW_X),
-                new HumanPlayer(Player.Icon.DRAW_O)
+                new HumanPlayer(selectIcon(0)),
+                new HumanPlayer(selectIcon(1)),
+                this.selectFirstPlayer()
         );
 
         this.loadGameActivity(game);
@@ -64,7 +94,6 @@ public class MainMenuActivity extends ActionBarActivity {
         i.putExtras(bundle);
         startActivity(i);
 
-        finish();
     }
 
     public void goToSettings(View view) {

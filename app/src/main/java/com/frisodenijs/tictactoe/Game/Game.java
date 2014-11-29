@@ -12,18 +12,34 @@ import java.util.ArrayList;
 public class Game implements Serializable {
 
     private Board board;
+
     private ArrayList<Player> players;
     private Player currentPlayer;
+
     private boolean buttonsVisibility;
+
+    private Player firstMovePlayer;
+    private boolean alternateFirstPlayer;
 
     private GameActivity gameActivity;
 
-    public Game(Player p1, Player p2) {
+    public Game(Player p1, Player p2, int firstPlayer) {
         this.board = new Board();
         this.players = new ArrayList<Player>();
         players.add(p1);
         players.add(p2);
-        this.currentPlayer = players.get(0);
+
+        if(firstPlayer < 2) {
+            this.currentPlayer = players.get(firstPlayer);
+            alternateFirstPlayer = false;
+        }
+        else
+        {
+            this.currentPlayer = players.get(0);
+            alternateFirstPlayer = true;
+        }
+        firstMovePlayer = currentPlayer;
+
         this.setButtonsVisibility(true);
     }
 
@@ -97,7 +113,10 @@ public class Game implements Serializable {
                 notifyPlayerToMove();
                 gameActivity.updateGUI();
             } else
+            {
                 gameActivity.goToFinishGame();
+            }
+
 
             return true;
         }
@@ -107,7 +126,7 @@ public class Game implements Serializable {
     }
 
     // TODO: this should be private, not called from the activity.
-    public void nextPlayer() {
+    private void nextPlayer() {
 
         // Get actual player index
         int index = players.indexOf(currentPlayer);
@@ -129,8 +148,17 @@ public class Game implements Serializable {
 
     public void resetBoard() {
         this.board = new Board();
-        // Set turn to first player.
-        currentPlayer = players.get(0);
+        // Set current (first) player for next game.
+
+        if(alternateFirstPlayer)
+        {
+            int index = players.indexOf(firstMovePlayer);
+            index = (index == 1) ? 0 : 1;
+            firstMovePlayer = players.get(index);
+        }
+
+        currentPlayer = firstMovePlayer;
+
         this.notifyPlayerToMove();
     }
 

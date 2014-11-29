@@ -7,8 +7,9 @@
     <string name="title_activity_game">Game</string>
     <string name="title_activity_main_menu">Main Menu</string>
     <string name="title_activity_end_menu">Game Finished</string>
-    <string name="easy_mode">Easy Mode</string>
-    <string name="hard_mode">Hard Mode</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="easy_mode">Easy</string>
+    <string name="hard_mode">Hard</string>
     <string name="restart">Restart</string>
     <string name="one_player">One Player</string>
     <string name="two_players">Two Players</string>
