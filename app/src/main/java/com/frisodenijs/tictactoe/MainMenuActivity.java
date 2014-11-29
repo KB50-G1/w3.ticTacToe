@@ -31,8 +31,8 @@ public class MainMenuActivity extends ActionBarActivity {
             return 0;
         else if(sharedPreferences.getBoolean("firstMoveO", false))
             return 1;
-        else
-            return (int) (Math.random() * 2);
+
+        return 2;
     }
 
     private Player.Icon selectIcon(int playerNumber)
@@ -47,7 +47,6 @@ public class MainMenuActivity extends ActionBarActivity {
         if(sharedPreferences.getBoolean("playerOneIconX", true))
             return Player.Icon.DRAW_O;
         return Player.Icon.DRAW_X;
-
 
     }
 
