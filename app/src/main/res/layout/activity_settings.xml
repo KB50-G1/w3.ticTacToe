@@ -148,6 +148,40 @@
             </RadioGroup>
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="30dp"
+                android:text="@string/difficulty"
+                />
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/easyMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="20dp"
+                    android:text="@string/easy_mode"/>
+
+                <RadioButton
+                    android:id="@+id/hardMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="20dp"
+                    android:text="@string/hard_mode"/>
+            </RadioGroup>
+        </TableRow>
+
     </TableLayout>
 
     <Button

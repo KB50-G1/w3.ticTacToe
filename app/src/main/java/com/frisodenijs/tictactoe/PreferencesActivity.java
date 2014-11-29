@@ -22,6 +22,9 @@ public class PreferencesActivity extends ActionBarActivity {
     private RadioButton firstMoveO;
     private RadioButton firstMoveXO;
 
+    private RadioButton easyMode;
+    private RadioButton hardMode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,9 @@ public class PreferencesActivity extends ActionBarActivity {
         firstMoveX = (RadioButton) findViewById(R.id.firstMoveX);
         firstMoveO = (RadioButton) findViewById(R.id.firstMoveO);
         firstMoveXO = (RadioButton) findViewById(R.id.firstMoveXO);
+
+        easyMode = (RadioButton) findViewById(R.id.easyMode);
+        hardMode = (RadioButton) findViewById(R.id.hardMode);
     }
 
     @Override
@@ -54,6 +60,9 @@ public class PreferencesActivity extends ActionBarActivity {
         firstMoveO.setChecked(sharedPreferences.getBoolean("firstMoveO", false));
         firstMoveXO.setChecked(sharedPreferences.getBoolean("firstMoveXO", false));
 
+        easyMode.setChecked(sharedPreferences.getBoolean("easyMode", true));
+        hardMode.setChecked(sharedPreferences.getBoolean("hardMode", false));
+
     }
 
     public void savePreferences(View view) {
@@ -70,6 +79,9 @@ public class PreferencesActivity extends ActionBarActivity {
         editor.putBoolean("firstMoveX", firstMoveX.isChecked());
         editor.putBoolean("firstMoveO", firstMoveO.isChecked());
         editor.putBoolean("firstMoveXO", firstMoveXO.isChecked());
+
+        editor.putBoolean("easyMode", easyMode.isChecked());
+        editor.putBoolean("hardMode", hardMode.isChecked());
 
         editor.commit();
         finish();

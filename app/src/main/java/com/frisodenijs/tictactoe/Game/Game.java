@@ -18,12 +18,12 @@ public class Game implements Serializable {
 
     private GameActivity gameActivity;
 
-    public Game(Player p1, Player p2) {
+    public Game(Player p1, Player p2, int firstPlayer) {
         this.board = new Board();
         this.players = new ArrayList<Player>();
         players.add(p1);
         players.add(p2);
-        this.currentPlayer = players.get(0);
+        this.currentPlayer = players.get(firstPlayer);
         this.setButtonsVisibility(true);
     }
 
