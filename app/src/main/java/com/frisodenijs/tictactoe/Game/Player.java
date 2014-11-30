@@ -62,7 +62,6 @@ public abstract class Player implements Serializable {
         this.name = name;
     }
 
-    public abstract int[] makeAutoMove();
     public abstract int[] makeAutoMove(Board board);
 
     @Override

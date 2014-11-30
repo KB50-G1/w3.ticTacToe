@@ -29,7 +29,7 @@ public class Game implements Serializable {
         players.add(p1);
         players.add(p2);
 
-        if(firstPlayer < 2) {
+        if(firstPlayer >= 0 && firstPlayer < 2) {
             this.currentPlayer = players.get(firstPlayer);
             alternateFirstPlayer = false;
         }
@@ -40,7 +40,7 @@ public class Game implements Serializable {
         }
         firstMovePlayer = currentPlayer;
 
-        this.setButtonsVisibility(true);
+        setButtonsVisibility(true);
     }
 
     public boolean getButtonsVisibility() {
@@ -49,10 +49,6 @@ public class Game implements Serializable {
 
     public void setButtonsVisibility(boolean buttonsVisibility) {
         this.buttonsVisibility = buttonsVisibility;
-    }
-
-    public GameActivity getGameActivity() {
-        return gameActivity;
     }
 
     public Player getLastWinner() {
@@ -79,6 +75,9 @@ public class Game implements Serializable {
         this.gameActivity = gameActivity;
     }
 
+    /**
+     * Check end of the game.
+     */
     public void checkGameEnd() {
 
         Player winner = board.checkWinner();
@@ -92,7 +91,7 @@ public class Game implements Serializable {
         }
         else
         {
-            this.nextPlayer();
+            nextPlayer();
             notifyPlayerToMove();
             gameActivity.updateGUI();
         }
@@ -113,6 +112,9 @@ public class Game implements Serializable {
         return false;
     }
 
+    /**
+     * Change currentPlayer to the next one.
+     */
     private void nextPlayer() {
 
         // Get actual player index
@@ -123,6 +125,12 @@ public class Game implements Serializable {
         setCurrentPlayer(players.get(index));
     }
 
+    /**
+     * Notify player to move.
+     *
+     * Human: Unlock GUI buttons so he can play
+     * Robot: Call function
+     */
     public void notifyPlayerToMove() {
         // If Single Player, ask for computer move. ( Random, AI, or another player class that implements makeAutoMove() ).
         if (!(currentPlayer instanceof HumanPlayer)) {
@@ -133,6 +141,11 @@ public class Game implements Serializable {
         }
     }
 
+    /**
+     * Creates a new board, to play a new game.
+     *
+     * If random player start setting is enabled, checks the one who started current board and switch it.
+     */
     public void resetBoard() {
         this.board = new Board();
         // Set current (first) player for next game.

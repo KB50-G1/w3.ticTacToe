@@ -19,7 +19,6 @@ import java.util.TimerTask;
 public class GameActivity extends ActionBarActivity {
 
     private Game game;
-
     private TextView[] playersNames;
     private TextView[] playersScores;
     private Button[][] buttons;
@@ -158,15 +157,14 @@ public class GameActivity extends ActionBarActivity {
 
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                if (buttonPressed.equals(buttons[i][j])) {
+                if (buttonPressed.equals(buttons[i][j]))
                     if (!game.makeMove(new int[]{i, j}))
                         Toast.makeText(this, this.getResources().getString(R.string.invalid_move), Toast.LENGTH_SHORT).show();
-                }
     }
 
     public void onClickRestart(View view) {
         game.resetBoard();
-        this.updateGUI();
+        updateGUI();
     }
 
     public void onClickBack(View view) {
