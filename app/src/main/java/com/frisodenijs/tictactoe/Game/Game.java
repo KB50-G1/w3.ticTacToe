@@ -51,16 +51,8 @@ public class Game implements Serializable {
         this.buttonsVisibility = buttonsVisibility;
     }
 
-    public void setPlayers(ArrayList<Player> players) {
-        this.players = players;
-    }
-
     public GameActivity getGameActivity() {
         return gameActivity;
-    }
-
-    public void setGameActivity(GameActivity gameActivity) {
-        this.gameActivity = gameActivity;
     }
 
     public Player getLastWinner() {
@@ -75,26 +67,35 @@ public class Game implements Serializable {
         return currentPlayer;
     }
 
-    public ArrayList<Player> getPlayers() {
-        return players;
-    }
-
     public Player getPlayer(int i) {
         return players.get(i);
     }
 
-
-    public boolean checkGameEnd() {
-
-        Player winner = board.checkWinner();
-        if (winner != null)
-            winner.incrementWinsCount();
-
-        return board.isFull() || winner != null;
-    }
-
     private void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
+    }
+
+    public void setGameActivity(GameActivity gameActivity) {
+        this.gameActivity = gameActivity;
+    }
+
+    public void checkGameEnd() {
+
+        Player winner = board.checkWinner();
+
+        if (board.isFull() || winner != null)
+        {
+            if (winner != null)
+                winner.incrementWinsCount();
+
+            gameActivity.goToFinishGame();
+        }
+        else
+        {
+            this.nextPlayer();
+            notifyPlayerToMove();
+            gameActivity.updateGUI();
+        }
     }
 
     /**
@@ -105,27 +106,13 @@ public class Game implements Serializable {
         if (board.setPlayerAtPosition(currentPlayer, position)) {
 
             gameActivity.changeButtonsVisibility(false);
-
-            gameActivity.updateGUI();
-
-            if (!checkGameEnd()) {
-                this.nextPlayer();
-                notifyPlayerToMove();
-                gameActivity.updateGUI();
-            } else
-            {
-                gameActivity.goToFinishGame();
-            }
-
-
+            checkGameEnd();
             return true;
         }
-
         // Invalid position. Player not saved
         return false;
     }
 
-    // TODO: this should be private, not called from the activity.
     private void nextPlayer() {
 
         // Get actual player index
