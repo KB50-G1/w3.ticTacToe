@@ -38,7 +38,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/player"
+                android:text="@string/player_one"
                 />
         </TableRow>
 
@@ -95,7 +95,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/player"
+                android:text="@string/player_two"
                 />
         </TableRow>
 
@@ -122,21 +122,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="20dp"
-                    android:text="X"/>
+                    android:text="P1"/>
 
                 <RadioButton
                     android:id="@+id/firstMoveO"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="20dp"
-                    android:text="O"/>
+                    android:text="P2"/>
 
                 <RadioButton
                     android:id="@+id/firstMoveXO"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="20dp"
-                    android:text="X/O"/>
+                    android:text="P1/P2"/>
 
             </RadioGroup>
         </TableRow>

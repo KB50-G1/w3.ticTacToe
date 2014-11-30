@@ -19,6 +19,7 @@ import java.util.TimerTask;
 public class GameActivity extends ActionBarActivity {
 
     private Game game;
+    private TextView[] playersIcons;
     private TextView[] playersNames;
     private TextView[] playersScores;
     private TextView drawScore;
@@ -29,10 +30,14 @@ public class GameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-
         playersNames = new TextView[]{
                 (TextView) findViewById(R.id.playerOneName),
                 (TextView) findViewById(R.id.playerTwoName)
+        };
+
+        playersIcons = new TextView[]{
+                (TextView) findViewById(R.id.playerOneIcon),
+                (TextView) findViewById(R.id.playerTwoIcon)
         };
 
         playersScores = new TextView[]{
@@ -122,9 +127,17 @@ public class GameActivity extends ActionBarActivity {
                 // playersNames[i].setBackgroundColor(getResources().getColor(R.color.sea2));
             }
 
-            playersNames[i].setText(game.getPlayer(i).toString() + "\n" + game.getPlayer(i).getName());
+            // Update players icon
+            playersIcons[i].setText(game.getPlayer(i).toString());
+            // Update players icon color
+            playersIcons[i].setTextColor(game.getPlayer(i).getColor());
+
+            // Update players name
+            playersNames[i].setText(game.getPlayer(i).getName());
+            // Update players name color
             playersNames[i].setTextColor(game.getPlayer(i).getColor());
 
+            // Update player win count.
             playersScores[i].setText(Integer.toString(game.getPlayer(i).getWinsCount()));
         }
 
@@ -134,6 +147,7 @@ public class GameActivity extends ActionBarActivity {
         // Update restart button text
         Button restartButton = (Button) findViewById(R.id.restartButton);
 
+        // Update Restart / Play Again button text.
         if(game.getLastWinner() != null)
             restartButton.setText(getResources().getString(R.string.play_again));
         else
