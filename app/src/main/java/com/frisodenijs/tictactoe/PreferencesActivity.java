@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+/**
+ * Warning: I'm not proud of this code!!
+ */
 
 public class PreferencesActivity extends ActionBarActivity {
 
@@ -30,6 +33,8 @@ public class PreferencesActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
         playerOneName = (EditText) findViewById(R.id.setPlayerOneName);
         playerTwoName = (EditText) findViewById(R.id.setPlayerTwoName);
 
@@ -42,27 +47,65 @@ public class PreferencesActivity extends ActionBarActivity {
 
         easyMode = (RadioButton) findViewById(R.id.easyMode);
         hardMode = (RadioButton) findViewById(R.id.hardMode);
+
+        if(savedInstanceState == null)
+        {
+            playerOneName.setText(sharedPreferences.getString("playerOneName", "Player 1"));
+            playerTwoName.setText(sharedPreferences.getString("playerTwoName", "Player 2"));
+
+            playerOneIconX.setChecked(sharedPreferences.getBoolean("playerOneIconX", true));
+            playerOneIconO.setChecked(sharedPreferences.getBoolean("playerOneIconO", false));
+
+            firstMoveX.setChecked(sharedPreferences.getBoolean("firstMoveX", true));
+            firstMoveO.setChecked(sharedPreferences.getBoolean("firstMoveO", false));
+            firstMoveXO.setChecked(sharedPreferences.getBoolean("firstMoveXO", false));
+
+            easyMode.setChecked(sharedPreferences.getBoolean("easyMode", true));
+            hardMode.setChecked(sharedPreferences.getBoolean("hardMode", false));
+        }
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+    }
 
-        sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
 
-        playerOneName.setText(sharedPreferences.getString("playerOneName", "Player 1"));
-        playerTwoName.setText(sharedPreferences.getString("playerTwoName", "Player 2"));
+        outState.putString("playerOneName", playerOneName.getText().toString());
+        outState.putString("playerTwoName", playerTwoName.getText().toString());
 
-        playerOneIconX.setChecked(sharedPreferences.getBoolean("playerOneIconX", true));
-        playerOneIconO.setChecked(sharedPreferences.getBoolean("playerOneIconO", false));
+        outState.putBoolean("playerOneIconX", playerOneIconX.isChecked());
+        outState.putBoolean("playerOneIconO", playerOneIconO.isChecked());
 
-        firstMoveX.setChecked(sharedPreferences.getBoolean("firstMoveX", true));
-        firstMoveO.setChecked(sharedPreferences.getBoolean("firstMoveO", false));
-        firstMoveXO.setChecked(sharedPreferences.getBoolean("firstMoveXO", false));
+        outState.putBoolean("firstMoveX", firstMoveX.isChecked());
+        outState.putBoolean("firstMoveO", firstMoveO.isChecked());
+        outState.putBoolean("firstMoveXO", firstMoveXO.isChecked());
 
-        easyMode.setChecked(sharedPreferences.getBoolean("easyMode", true));
-        hardMode.setChecked(sharedPreferences.getBoolean("hardMode", false));
+        outState.putBoolean("easyMode", easyMode.isChecked());
+        outState.putBoolean("hardMode", hardMode.isChecked());
 
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        playerOneName.setText(savedInstanceState.getString("playerOneName"));
+        playerTwoName.setText(savedInstanceState.getString("playerTwoName"));
+
+        playerOneIconX.setChecked(savedInstanceState.getBoolean("playerOneIconX"));
+        playerOneIconO.setChecked(savedInstanceState.getBoolean("playerOneIconO"));
+
+        firstMoveX.setChecked(savedInstanceState.getBoolean("firstMoveX"));
+        firstMoveO.setChecked(savedInstanceState.getBoolean("firstMoveO"));
+        firstMoveXO.setChecked(savedInstanceState.getBoolean("firstMoveXO"));
+
+        easyMode.setChecked(savedInstanceState.getBoolean("easyMode"));
+        hardMode.setChecked(savedInstanceState.getBoolean("hardMode"));
     }
 
     public void savePreferences(View view) {
@@ -83,6 +126,7 @@ public class PreferencesActivity extends ActionBarActivity {
         editor.putBoolean("easyMode", easyMode.isChecked());
         editor.putBoolean("hardMode", hardMode.isChecked());
 
+        // Save all changes made to the preferences
         editor.commit();
         finish();
     }
