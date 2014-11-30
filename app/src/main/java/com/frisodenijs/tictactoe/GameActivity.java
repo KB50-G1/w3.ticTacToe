@@ -19,9 +19,10 @@ import java.util.TimerTask;
 public class GameActivity extends ActionBarActivity {
 
     private Game game;
-
+    private TextView[] playersIcons;
     private TextView[] playersNames;
     private TextView[] playersScores;
+    private TextView drawScore;
     private Button[][] buttons;
 
     @Override
@@ -29,16 +30,22 @@ public class GameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-
         playersNames = new TextView[]{
                 (TextView) findViewById(R.id.playerOneName),
                 (TextView) findViewById(R.id.playerTwoName)
+        };
+
+        playersIcons = new TextView[]{
+                (TextView) findViewById(R.id.playerOneIcon),
+                (TextView) findViewById(R.id.playerTwoIcon)
         };
 
         playersScores = new TextView[]{
                 (TextView) findViewById(R.id.playerOneScores),
                 (TextView) findViewById(R.id.playerTwoScores)
         };
+
+        drawScore = (TextView) findViewById(R.id.drawScore);
 
         buttons = new Button[3][3];
         buttons[0][0] = (Button) findViewById(R.id.b00);
@@ -101,7 +108,12 @@ public class GameActivity extends ActionBarActivity {
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
                 if (board[i][j] != null)
+                {
+                    // Place the player text (X or O) in the button.
                     buttons[i][j].setText(board[i][j].toString());
+                    // Change the color of the text.
+                    buttons[i][j].setTextColor(board[i][j].getColor());
+                }
                 else
                     buttons[i][j].setText("");
             }
@@ -115,13 +127,27 @@ public class GameActivity extends ActionBarActivity {
                 // playersNames[i].setBackgroundColor(getResources().getColor(R.color.sea2));
             }
 
-            playersNames[i].setText(game.getPlayer(i).toString() + "\n" + game.getPlayer(i).getName());
+            // Update players icon
+            playersIcons[i].setText(game.getPlayer(i).toString());
+            // Update players icon color
+            playersIcons[i].setTextColor(game.getPlayer(i).getColor());
+
+            // Update players name
+            playersNames[i].setText(game.getPlayer(i).getName());
+            // Update players name color
+            playersNames[i].setTextColor(game.getPlayer(i).getColor());
+
+            // Update player win count.
             playersScores[i].setText(Integer.toString(game.getPlayer(i).getWinsCount()));
         }
+
+        // Update Draw Score Count
+        drawScore.setText(Integer.toString(game.getDrawCount()));
 
         // Update restart button text
         Button restartButton = (Button) findViewById(R.id.restartButton);
 
+        // Update Restart / Play Again button text.
         if(game.getLastWinner() != null)
             restartButton.setText(getResources().getString(R.string.play_again));
         else
@@ -151,15 +177,14 @@ public class GameActivity extends ActionBarActivity {
 
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                if (buttonPressed.equals(buttons[i][j])) {
+                if (buttonPressed.equals(buttons[i][j]))
                     if (!game.makeMove(new int[]{i, j}))
                         Toast.makeText(this, this.getResources().getString(R.string.invalid_move), Toast.LENGTH_SHORT).show();
-                }
     }
 
     public void onClickRestart(View view) {
         game.resetBoard();
-        this.updateGUI();
+        updateGUI();
     }
 
     public void onClickBack(View view) {

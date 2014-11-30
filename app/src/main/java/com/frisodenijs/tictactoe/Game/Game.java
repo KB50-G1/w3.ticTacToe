@@ -23,13 +23,16 @@ public class Game implements Serializable {
 
     private GameActivity gameActivity;
 
+    private int drawCount;
+
     public Game(Player p1, Player p2, int firstPlayer) {
         this.board = new Board();
         this.players = new ArrayList<Player>();
+        this.drawCount = 0;
         players.add(p1);
         players.add(p2);
 
-        if(firstPlayer < 2) {
+        if(firstPlayer >= 0 && firstPlayer < 2) {
             this.currentPlayer = players.get(firstPlayer);
             alternateFirstPlayer = false;
         }
@@ -40,7 +43,7 @@ public class Game implements Serializable {
         }
         firstMovePlayer = currentPlayer;
 
-        this.setButtonsVisibility(true);
+        setButtonsVisibility(true);
     }
 
     public boolean getButtonsVisibility() {
@@ -51,16 +54,8 @@ public class Game implements Serializable {
         this.buttonsVisibility = buttonsVisibility;
     }
 
-    public void setPlayers(ArrayList<Player> players) {
-        this.players = players;
-    }
-
-    public GameActivity getGameActivity() {
-        return gameActivity;
-    }
-
-    public void setGameActivity(GameActivity gameActivity) {
-        this.gameActivity = gameActivity;
+    public int getDrawCount() {
+        return drawCount;
     }
 
     public Player getLastWinner() {
@@ -75,26 +70,40 @@ public class Game implements Serializable {
         return currentPlayer;
     }
 
-    public ArrayList<Player> getPlayers() {
-        return players;
-    }
-
     public Player getPlayer(int i) {
         return players.get(i);
     }
 
-
-    public boolean checkGameEnd() {
-
-        Player winner = board.checkWinner();
-        if (winner != null)
-            winner.incrementWinsCount();
-
-        return board.isFull() || winner != null;
-    }
-
     private void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
+    }
+
+    public void setGameActivity(GameActivity gameActivity) {
+        this.gameActivity = gameActivity;
+    }
+
+    /**
+     * Check end of the game.
+     */
+    public void checkGameEnd() {
+
+        Player winner = board.checkWinner();
+
+        if (board.isFull() || winner != null)
+        {
+            if (winner != null)
+                winner.incrementWinsCount();
+            else
+                drawCount++;
+
+            gameActivity.goToFinishGame();
+        }
+        else
+        {
+            nextPlayer();
+            notifyPlayerToMove();
+            gameActivity.updateGUI();
+        }
     }
 
     /**
@@ -105,27 +114,16 @@ public class Game implements Serializable {
         if (board.setPlayerAtPosition(currentPlayer, position)) {
 
             gameActivity.changeButtonsVisibility(false);
-
-            gameActivity.updateGUI();
-
-            if (!checkGameEnd()) {
-                this.nextPlayer();
-                notifyPlayerToMove();
-                gameActivity.updateGUI();
-            } else
-            {
-                gameActivity.goToFinishGame();
-            }
-
-
+            checkGameEnd();
             return true;
         }
-
         // Invalid position. Player not saved
         return false;
     }
 
-    // TODO: this should be private, not called from the activity.
+    /**
+     * Change currentPlayer to the next one.
+     */
     private void nextPlayer() {
 
         // Get actual player index
@@ -136,6 +134,12 @@ public class Game implements Serializable {
         setCurrentPlayer(players.get(index));
     }
 
+    /**
+     * Notify player to move.
+     *
+     * Human: Unlock GUI buttons so he can play
+     * Robot: Call function
+     */
     public void notifyPlayerToMove() {
         // If Single Player, ask for computer move. ( Random, AI, or another player class that implements makeAutoMove() ).
         if (!(currentPlayer instanceof HumanPlayer)) {
@@ -146,6 +150,11 @@ public class Game implements Serializable {
         }
     }
 
+    /**
+     * Creates a new board, to play a new game.
+     *
+     * If random player start setting is enabled, checks the one who started current board and switch it.
+     */
     public void resetBoard() {
         this.board = new Board();
         // Set current (first) player for next game.

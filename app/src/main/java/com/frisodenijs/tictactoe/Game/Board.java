@@ -21,18 +21,12 @@ public class Board implements Serializable {
         return board;
     }
 
-    // TODO: we really don't need this method?
-    public Player getPlayerAtPosition(int[] position) {
-        return board[position[0]][position[1]];
-    }
-
     public Player getWinner() {
         return winner;
     }
 
     public boolean setPlayerAtPosition(Player player, int[] position) {
 
-        // 1: check valid position. 2: save reference of player there
         if (board[position[0]][position[1]] == null) {
             this.board[position[0]][position[1]] = player;
             Log.d("BOARD", "Player: " + player.toString() + " added to " + Integer.toString(position[0]) + ", " + Integer.toString(position[1]));
@@ -146,8 +140,6 @@ public class Board implements Serializable {
                 }
             }
         }
-
-
         return null;
     }
 
@@ -172,7 +164,6 @@ public class Board implements Serializable {
                 return null;
             }
         }
-
         return null;
     }
 

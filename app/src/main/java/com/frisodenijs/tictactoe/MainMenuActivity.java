@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
-import android.widget.CheckBox;
 
 import com.frisodenijs.tictactoe.Game.Game;
 import com.frisodenijs.tictactoe.Game.HumanPlayer;
@@ -18,11 +17,52 @@ public class MainMenuActivity extends ActionBarActivity {
 
     SharedPreferences sharedPreferences;
 
+    Game game;
+
+    String playerOneName;
+    String playerTwoName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
          sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+        playerOneName = sharedPreferences.getString("playerOneName", "Player 1");
+        playerTwoName = sharedPreferences.getString("playerTwoName", "Player 2");
+    }
+
+    public void onClickOnePlayer(View view) {
+
+        if(sharedPreferences.getBoolean("hardMode", false))
+        {
+            game = new Game(
+                    new RandomPlayer(selectIcon(0), playerOneName),
+                    new RandomPlayer(selectIcon(1), playerTwoName),
+                    this.selectFirstPlayer()
+            );
+        }
+        else
+        {
+            game = new Game(
+                    new HumanPlayer(selectIcon(0),playerOneName),
+                    new RandomPlayer(selectIcon(1),playerTwoName),
+                    this.selectFirstPlayer()
+            );
+        }
+
+        this.loadGameActivity(game);
+    }
+
+    public void onClickTwoPlayers(View view) {
+
+        game = new Game(
+                new HumanPlayer(selectIcon(0),playerOneName),
+                new HumanPlayer(selectIcon(1),playerTwoName),
+                this.selectFirstPlayer()
+        );
+
+        loadGameActivity(game);
     }
 
     private int selectFirstPlayer()
@@ -50,41 +90,6 @@ public class MainMenuActivity extends ActionBarActivity {
 
     }
 
-    public void onClickOnePlayer(View view) {
-
-        Game game;
-
-        if(sharedPreferences.getBoolean("hardMode", false))
-        {
-            game = new Game(
-                    new RandomPlayer(selectIcon(0)),
-                    new RandomPlayer(selectIcon(1)),
-                    this.selectFirstPlayer()
-            );
-        }
-        else
-        {
-            game = new Game(
-                    new HumanPlayer(selectIcon(0)),
-                    new RandomPlayer(selectIcon(1)),
-                    this.selectFirstPlayer()
-            );
-        }
-
-        this.loadGameActivity(game);
-    }
-
-    public void onClickTwoPlayers(View view) {
-
-        Game game = new Game(
-                new HumanPlayer(selectIcon(0)),
-                new HumanPlayer(selectIcon(1)),
-                this.selectFirstPlayer()
-        );
-
-        this.loadGameActivity(game);
-    }
-
     private void loadGameActivity(Game game) {
 
         Bundle bundle = new Bundle();
@@ -93,7 +98,6 @@ public class MainMenuActivity extends ActionBarActivity {
         Intent i = new Intent(MainMenuActivity.this, GameActivity.class);
         i.putExtras(bundle);
         startActivity(i);
-
     }
 
     public void goToSettings(View view) {
