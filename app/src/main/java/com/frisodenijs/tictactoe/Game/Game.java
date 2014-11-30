@@ -23,9 +23,12 @@ public class Game implements Serializable {
 
     private GameActivity gameActivity;
 
+    private int drawCount;
+
     public Game(Player p1, Player p2, int firstPlayer) {
         this.board = new Board();
         this.players = new ArrayList<Player>();
+        this.drawCount = 0;
         players.add(p1);
         players.add(p2);
 
@@ -49,6 +52,10 @@ public class Game implements Serializable {
 
     public void setButtonsVisibility(boolean buttonsVisibility) {
         this.buttonsVisibility = buttonsVisibility;
+    }
+
+    public int getDrawCount() {
+        return drawCount;
     }
 
     public Player getLastWinner() {
@@ -86,6 +93,8 @@ public class Game implements Serializable {
         {
             if (winner != null)
                 winner.incrementWinsCount();
+            else
+                drawCount++;
 
             gameActivity.goToFinishGame();
         }

@@ -21,6 +21,7 @@ public class GameActivity extends ActionBarActivity {
     private Game game;
     private TextView[] playersNames;
     private TextView[] playersScores;
+    private TextView drawScore;
     private Button[][] buttons;
 
     @Override
@@ -38,6 +39,8 @@ public class GameActivity extends ActionBarActivity {
                 (TextView) findViewById(R.id.playerOneScores),
                 (TextView) findViewById(R.id.playerTwoScores)
         };
+
+        drawScore = (TextView) findViewById(R.id.drawScore);
 
         buttons = new Button[3][3];
         buttons[0][0] = (Button) findViewById(R.id.b00);
@@ -124,6 +127,9 @@ public class GameActivity extends ActionBarActivity {
 
             playersScores[i].setText(Integer.toString(game.getPlayer(i).getWinsCount()));
         }
+
+        // Update Draw Score Count
+        drawScore.setText(Integer.toString(game.getDrawCount()));
 
         // Update restart button text
         Button restartButton = (Button) findViewById(R.id.restartButton);
