@@ -32,10 +32,10 @@ public abstract class Player implements Serializable {
     }
 
     private void setColor() {
-        if(this.mark == Icon.DRAW_X)
-            color = Color.RED;
+        if (this.mark == Icon.DRAW_X)
+            color = Color.parseColor("#891732");
         else
-            color = Color.BLUE;
+            color = Color.parseColor("#284283");
     }
 
     public int getColor() {

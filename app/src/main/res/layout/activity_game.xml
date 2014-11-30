@@ -31,7 +31,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:onClick="onClickField"
+                android:onClick="onClickBoardButton"
                 android:textSize="50sp"
                 />
 
@@ -41,7 +41,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:onClick="onClickField"
+                android:onClick="onClickBoardButton"
                 android:textSize="50sp"
                 />
 
@@ -51,7 +51,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:onClick="onClickField"
+                android:onClick="onClickBoardButton"
                 android:textSize="50sp"
                 />
         </TableRow>
@@ -67,7 +67,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:onClick="onClickField"
+                android:onClick="onClickBoardButton"
                 android:textSize="50sp"
                 />
 
@@ -77,7 +77,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:onClick="onClickField"
+                android:onClick="onClickBoardButton"
                 android:textSize="50sp"
                 />
 
@@ -87,7 +87,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:onClick="onClickField"
+                android:onClick="onClickBoardButton"
                 android:textSize="50sp"
                 />
         </TableRow>
@@ -103,7 +103,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:onClick="onClickField"
+                android:onClick="onClickBoardButton"
                 android:textSize="50sp"
                 />
 
@@ -113,7 +113,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:onClick="onClickField"
+                android:onClick="onClickBoardButton"
                 android:textSize="50sp"
                 />
 
@@ -123,7 +123,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:onClick="onClickField"
+                android:onClick="onClickBoardButton"
                 android:textSize="50sp"
                 />
         </TableRow>
@@ -266,6 +266,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@color/white"
                 android:onClick="onClickRestart"
                 android:text="@string/restart"/>
 
@@ -274,6 +275,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@color/white"
                 android:onClick="onClickBack"
                 android:text="@string/back_to_main"/>
         </LinearLayout>
