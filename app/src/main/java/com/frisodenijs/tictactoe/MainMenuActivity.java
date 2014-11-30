@@ -26,7 +26,7 @@ public class MainMenuActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-         sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
         playerOneName = sharedPreferences.getString("playerOneName", "Player 1");
         playerTwoName = sharedPreferences.getString("playerTwoName", "Player 2");
@@ -34,19 +34,16 @@ public class MainMenuActivity extends ActionBarActivity {
 
     public void onClickOnePlayer(View view) {
 
-        if(sharedPreferences.getBoolean("hardMode", false))
-        {
+        if (sharedPreferences.getBoolean("hardMode", false)) {
             game = new Game(
                     new RandomPlayer(selectIcon(0), playerOneName),
                     new RandomPlayer(selectIcon(1), playerTwoName),
                     this.selectFirstPlayer()
             );
-        }
-        else
-        {
+        } else {
             game = new Game(
-                    new HumanPlayer(selectIcon(0),playerOneName),
-                    new RandomPlayer(selectIcon(1),playerTwoName),
+                    new HumanPlayer(selectIcon(0), playerOneName),
+                    new RandomPlayer(selectIcon(1), playerTwoName),
                     this.selectFirstPlayer()
             );
         }
@@ -57,34 +54,31 @@ public class MainMenuActivity extends ActionBarActivity {
     public void onClickTwoPlayers(View view) {
 
         game = new Game(
-                new HumanPlayer(selectIcon(0),playerOneName),
-                new HumanPlayer(selectIcon(1),playerTwoName),
+                new HumanPlayer(selectIcon(0), playerOneName),
+                new HumanPlayer(selectIcon(1), playerTwoName),
                 this.selectFirstPlayer()
         );
 
         loadGameActivity(game);
     }
 
-    private int selectFirstPlayer()
-    {
-        if(sharedPreferences.getBoolean("firstMoveX", true))
+    private int selectFirstPlayer() {
+        if (sharedPreferences.getBoolean("firstMoveX", true))
             return 0;
-        else if(sharedPreferences.getBoolean("firstMoveO", false))
+        else if (sharedPreferences.getBoolean("firstMoveO", false))
             return 1;
 
         return 2;
     }
 
-    private Player.Icon selectIcon(int playerNumber)
-    {
-        if(playerNumber == 0)
-        {
-            if(sharedPreferences.getBoolean("playerOneIconX", true))
+    private Player.Icon selectIcon(int playerNumber) {
+        if (playerNumber == 0) {
+            if (sharedPreferences.getBoolean("playerOneIconX", true))
                 return Player.Icon.DRAW_X;
             return Player.Icon.DRAW_O;
         }
 
-        if(sharedPreferences.getBoolean("playerOneIconX", true))
+        if (sharedPreferences.getBoolean("playerOneIconX", true))
             return Player.Icon.DRAW_O;
         return Player.Icon.DRAW_X;
 
