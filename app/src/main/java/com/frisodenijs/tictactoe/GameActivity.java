@@ -27,10 +27,15 @@ public class GameActivity extends ActionBarActivity {
     private TextView drawScore;
     private Button[][] buttons;
 
+    Typeface customFont;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        customFont = Typeface.createFromAsset(getAssets(), "fonts/HaloHandletter.otf");
 
         playersNames = new TextView[]{
                 (TextView) findViewById(R.id.playerOneName),
@@ -114,6 +119,7 @@ public class GameActivity extends ActionBarActivity {
                     buttons[i][j].setText(board[i][j].toString());
                     // Change the color of the text.
                     buttons[i][j].setTextColor(board[i][j].getColor());
+                    buttons[i][j].setTypeface(customFont);
                 } else
                     buttons[i][j].setText("");
             }
