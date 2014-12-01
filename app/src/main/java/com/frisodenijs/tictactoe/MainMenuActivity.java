@@ -11,6 +11,7 @@ import com.frisodenijs.tictactoe.Game.Game;
 import com.frisodenijs.tictactoe.Game.HumanPlayer;
 import com.frisodenijs.tictactoe.Game.Player;
 import com.frisodenijs.tictactoe.Game.RandomPlayer;
+import com.frisodenijs.tictactoe.Game.AIPlayer;
 
 
 public class MainMenuActivity extends ActionBarActivity {
@@ -36,21 +37,11 @@ public class MainMenuActivity extends ActionBarActivity {
 
         if (sharedPreferences.getBoolean("hardMode", false)) {
             game = new Game(
-<<<<<<< HEAD
-                    new AIPlayer(Player.Icon.DRAW_X),
-                    new HumanPlayer(Player.Icon.DRAW_O)
-            );
-            Log.d("MainMenuActivity", "Hard Mode");
-        }
-        else
-        {
-=======
                     new RandomPlayer(selectIcon(0), playerOneName),
                     new RandomPlayer(selectIcon(1), playerTwoName),
                     this.selectFirstPlayer()
             );
         } else {
->>>>>>> origin/develop
             game = new Game(
                     new HumanPlayer(selectIcon(0), playerOneName),
                     new RandomPlayer(selectIcon(1), playerTwoName),
