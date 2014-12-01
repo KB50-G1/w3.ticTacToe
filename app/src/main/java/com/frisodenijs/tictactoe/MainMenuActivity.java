@@ -27,7 +27,11 @@ public class MainMenuActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         playerOneName = sharedPreferences.getString("playerOneName", "Player 1");
         playerTwoName = sharedPreferences.getString("playerTwoName", "Player 2");
     }
@@ -38,13 +42,13 @@ public class MainMenuActivity extends ActionBarActivity {
             game = new Game(
                     new RandomPlayer(selectIcon(0), playerOneName),
                     new RandomPlayer(selectIcon(1), playerTwoName),
-                    this.selectFirstPlayer()
+                    selectFirstPlayer()
             );
         } else {
             game = new Game(
                     new HumanPlayer(selectIcon(0), playerOneName),
                     new RandomPlayer(selectIcon(1), playerTwoName),
-                    this.selectFirstPlayer()
+                    selectFirstPlayer()
             );
         }
 
@@ -56,7 +60,7 @@ public class MainMenuActivity extends ActionBarActivity {
         game = new Game(
                 new HumanPlayer(selectIcon(0), playerOneName),
                 new HumanPlayer(selectIcon(1), playerTwoName),
-                this.selectFirstPlayer()
+                selectFirstPlayer()
         );
 
         loadGameActivity(game);
