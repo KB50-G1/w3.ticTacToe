@@ -32,12 +32,10 @@ public class Game implements Serializable {
         players.add(p1);
         players.add(p2);
 
-        if(firstPlayer >= 0 && firstPlayer < 2) {
+        if (firstPlayer >= 0 && firstPlayer < 2) {
             this.currentPlayer = players.get(firstPlayer);
             alternateFirstPlayer = false;
-        }
-        else
-        {
+        } else {
             this.currentPlayer = players.get(0);
             alternateFirstPlayer = true;
         }
@@ -89,17 +87,14 @@ public class Game implements Serializable {
 
         Player winner = board.checkWinner();
 
-        if (board.isFull() || winner != null)
-        {
+        if (board.isFull() || winner != null) {
             if (winner != null)
                 winner.incrementWinsCount();
             else
                 drawCount++;
 
             gameActivity.goToFinishGame();
-        }
-        else
-        {
+        } else {
             nextPlayer();
             notifyPlayerToMove();
             gameActivity.updateGUI();
@@ -138,29 +133,25 @@ public class Game implements Serializable {
      * Notify player to move.
      *
      * Human: Unlock GUI buttons so he can play
-     * Robot: Call function
+     * Robot: Notify to make a move.
      */
     public void notifyPlayerToMove() {
-        // If Single Player, ask for computer move. ( Random, AI, or another player class that implements makeAutoMove() ).
-        if (!(currentPlayer instanceof HumanPlayer)) {
+        if (!(currentPlayer instanceof HumanPlayer))
             while (!board.isFull() && !makeMove(currentPlayer.makeAutoMove(this.board))) ;
-        } else {
-            if(getLastWinner() == null)
-                gameActivity.changeButtonsVisibility(true);
-        }
+        else
+            gameActivity.changeButtonsVisibility(true);
     }
 
     /**
      * Creates a new board, to play a new game.
-     *
+     * <p/>
      * If random player start setting is enabled, checks the one who started current board and switch it.
      */
     public void resetBoard() {
         this.board = new Board();
         // Set current (first) player for next game.
 
-        if(alternateFirstPlayer)
-        {
+        if (alternateFirstPlayer) {
             int index = players.indexOf(firstMovePlayer);
             index = (index == 1) ? 0 : 1;
             firstMovePlayer = players.get(index);
