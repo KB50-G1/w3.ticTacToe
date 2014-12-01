@@ -25,6 +25,8 @@ public class Game implements Serializable {
 
     private int drawCount;
 
+    private boolean finished;
+
     public Game(Player p1, Player p2, int firstPlayer) {
         this.board = new Board();
         this.players = new ArrayList<Player>();
@@ -54,6 +56,14 @@ public class Game implements Serializable {
 
     public int getDrawCount() {
         return drawCount;
+    }
+
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
     }
 
     public Player getLastWinner() {
@@ -88,6 +98,9 @@ public class Game implements Serializable {
         Player winner = board.checkWinner();
 
         if (board.isFull() || winner != null) {
+            // Game is finished
+            setFinished(true);
+            // Check winner
             if (winner != null)
                 winner.incrementWinsCount();
             else
@@ -131,7 +144,7 @@ public class Game implements Serializable {
 
     /**
      * Notify player to move.
-     *
+     * <p/>
      * Human: Unlock GUI buttons so he can play
      * Robot: Notify to make a move.
      */
@@ -148,9 +161,10 @@ public class Game implements Serializable {
      * If random player start setting is enabled, checks the one who started current board and switch it.
      */
     public void resetBoard() {
-        this.board = new Board();
-        // Set current (first) player for next game.
+        board = new Board();
+        setFinished(false);
 
+        // Set current (first) player for next game.
         if (alternateFirstPlayer) {
             int index = players.indexOf(firstMovePlayer);
             index = (index == 1) ? 0 : 1;
@@ -158,8 +172,7 @@ public class Game implements Serializable {
         }
 
         currentPlayer = firstMovePlayer;
-
-        this.notifyPlayerToMove();
+        notifyPlayerToMove();
     }
 
 }

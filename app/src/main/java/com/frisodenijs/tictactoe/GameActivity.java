@@ -29,7 +29,6 @@ public class GameActivity extends ActionBarActivity {
 
     Typeface customFont;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +66,6 @@ public class GameActivity extends ActionBarActivity {
 
         // First time Activity is created, take data (game instance) from the intent.
         if (savedInstanceState == null) {
-            Log.d("GAME", "First time here!");
             Intent intent = getIntent();
             game = (Game) intent.getSerializableExtra("game");
         }
@@ -76,11 +74,12 @@ public class GameActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("GAME", "Resuming...");
         game.setGameActivity(this);
-        game.notifyPlayerToMove();
-        updateGUI();
+
+        if( ! game.isFinished())
+            game.notifyPlayerToMove();
         changeButtonsVisibility(game.getButtonsVisibility());
+        updateGUI();
     }
 
     @Override
@@ -99,7 +98,6 @@ public class GameActivity extends ActionBarActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        Log.d("GAME", "Restoring game...");
         this.game = (Game) savedInstanceState.getSerializable("game");
     }
 
@@ -126,15 +124,11 @@ public class GameActivity extends ActionBarActivity {
 
         // Update Players Information
         for (int i = 0; i < 2; i++) {
-            //playersNames[i].setEnabled(false);
-            // playersNames[i].setBackgroundColor(getResources().getColor(R.color.white));
             playersIcons[i].setVisibility(View.INVISIBLE);
             playersNames[i].setTypeface(null, Typeface.NORMAL);
             if (game.getPlayer(i).equals(game.getCurrentPlayer())) {
-                //playersNames[i].setEnabled(true);
                 playersIcons[i].setVisibility(View.VISIBLE);
                 playersNames[i].setTypeface(null, Typeface.BOLD);
-                // playersNames[i].setBackgroundColor(getResources().getColor(R.color.sea2));
             }
 
             // Update players icon
@@ -175,7 +169,6 @@ public class GameActivity extends ActionBarActivity {
 
         // Save the buttons state, to be able to recover it.
         game.setButtonsVisibility(boolState);
-        Log.d("BUTTON", "Changed visibility to: " + Boolean.toString(boolState));
 
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
