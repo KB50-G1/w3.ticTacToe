@@ -148,7 +148,7 @@ public class Game implements Serializable {
             try {
                 while (!board.isFull() && !makeMove(currentPlayer.makeAutoMove(this.board))) ;
             } catch (NullPointerException e) {
-                Log.d("Game, notifyPlayerToMove()", board.toString());
+                Log.d("Game.notifyPlayerToMove()", "null pointer exception");
             }
         } else {
             if(getLastWinner() == null)
