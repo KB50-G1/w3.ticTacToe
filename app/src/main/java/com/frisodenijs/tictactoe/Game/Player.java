@@ -1,5 +1,7 @@
 package com.frisodenijs.tictactoe.Game;
 
+import android.graphics.Color;
+
 import java.io.Serializable;
 
 /**
@@ -9,6 +11,7 @@ public abstract class Player implements Serializable {
 
     private Icon mark;
     private String name = "Player";
+    private int color;
     private int winsCount;
 
     public enum Icon {
@@ -18,12 +21,25 @@ public abstract class Player implements Serializable {
     protected Player(Icon mark) {
         this.mark = mark;
         this.winsCount = 0;
+        setColor();
     }
 
     protected Player(Icon mark, String name) {
         this.mark = mark;
         this.name = name;
         this.winsCount = 0;
+        setColor();
+    }
+
+    private void setColor() {
+        if (this.mark == Icon.DRAW_X)
+            color = Color.parseColor("#891732");
+        else
+            color = Color.parseColor("#284283");
+    }
+
+    public int getColor() {
+        return color;
     }
 
     public Icon getMark() {
@@ -46,7 +62,6 @@ public abstract class Player implements Serializable {
         this.name = name;
     }
 
-    public abstract int[] makeAutoMove();
     public abstract int[] makeAutoMove(Board board);
 
     @Override

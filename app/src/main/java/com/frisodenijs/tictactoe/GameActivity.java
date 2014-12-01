@@ -1,6 +1,8 @@
 package com.frisodenijs.tictactoe;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -19,19 +21,38 @@ import java.util.TimerTask;
 public class GameActivity extends ActionBarActivity {
 
     private Game game;
-
-    private TextView[] playerInfo;
+    private TextView[] playersIcons;
+    private TextView[] playersNames;
+    private TextView[] playersScores;
+    private TextView drawScore;
     private Button[][] buttons;
+
+    Typeface customFont;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        playerInfo = new TextView[]{
-                (TextView) findViewById(R.id.playerInfo),
-                (TextView) findViewById(R.id.playerInfo2)
+        customFont = Typeface.createFromAsset(getAssets(), "fonts/HaloHandletter.otf");
+
+        playersNames = new TextView[]{
+                (TextView) findViewById(R.id.playerOneName),
+                (TextView) findViewById(R.id.playerTwoName)
         };
+
+        playersIcons = new TextView[]{
+                (TextView) findViewById(R.id.playerOneIcon),
+                (TextView) findViewById(R.id.playerTwoIcon)
+        };
+
+        playersScores = new TextView[]{
+                (TextView) findViewById(R.id.playerOneScores),
+                (TextView) findViewById(R.id.playerTwoScores)
+        };
+
+        drawScore = (TextView) findViewById(R.id.drawScore);
 
         buttons = new Button[3][3];
         buttons[0][0] = (Button) findViewById(R.id.b00);
@@ -93,29 +114,60 @@ public class GameActivity extends ActionBarActivity {
         // Update Board Buttons
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
-                if (board[i][j] != null)
+                if (board[i][j] != null) {
+                    // Place the player text (X or O) in the button.
                     buttons[i][j].setText(board[i][j].toString());
-                else
+                    // Change the color of the text.
+                    buttons[i][j].setTextColor(board[i][j].getColor());
+                    buttons[i][j].setTypeface(customFont);
+                } else
                     buttons[i][j].setText("");
             }
 
         // Update Players Information
         for (int i = 0; i < 2; i++) {
-            playerInfo[i].setEnabled(false);
+            //playersNames[i].setEnabled(false);
+            // playersNames[i].setBackgroundColor(getResources().getColor(R.color.white));
+            playersIcons[i].setVisibility(View.INVISIBLE);
+            playersNames[i].setTypeface(null, Typeface.NORMAL);
             if (game.getPlayer(i).equals(game.getCurrentPlayer())) {
-                playerInfo[i].setEnabled(true);
+                //playersNames[i].setEnabled(true);
+                playersIcons[i].setVisibility(View.VISIBLE);
+                playersNames[i].setTypeface(null, Typeface.BOLD);
+                // playersNames[i].setBackgroundColor(getResources().getColor(R.color.sea2));
             }
 
-            playerInfo[i].setText(game.getPlayer(i).toString() + ": " + game.getPlayer(i).getWinsCount());
+            // Update players icon
+            playersIcons[i].setText(game.getPlayer(i).toString());
+            // Update players icon color
+            playersIcons[i].setTextColor(game.getPlayer(i).getColor());
+
+            // Update players name
+            playersNames[i].setText(game.getPlayer(i).getName());
+            // Update players name color
+            playersNames[i].setTextColor(game.getPlayer(i).getColor());
+
+            // Update player win count.
+            playersScores[i].setText(Integer.toString(game.getPlayer(i).getWinsCount()));
         }
+
+        // Update Draw Score Count
+        drawScore.setText(Integer.toString(game.getDrawCount()));
 
         // Update restart button text
         Button restartButton = (Button) findViewById(R.id.restartButton);
 
-        if(game.getLastWinner() != null)
+        // Update Restart / Play Again button text.
+        if (game.getLastWinner() != null)
+        {
             restartButton.setText(getResources().getString(R.string.play_again));
+            restartButton.setBackgroundColor(getResources().getColor(R.color.sea1));
+        }
         else
+        {
             restartButton.setText(getResources().getString(R.string.restart));
+            restartButton.setBackgroundColor(getResources().getColor(R.color.white));
+        }
 
     }
 
@@ -135,21 +187,20 @@ public class GameActivity extends ActionBarActivity {
      * onClick Buttons functionality
      */
 
-    public void onClickField(View view) {
+    public void onClickBoardButton(View view) {
 
         Button buttonPressed = (Button) findViewById(view.getId());
 
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                if (buttonPressed.equals(buttons[i][j])) {
+                if (buttonPressed.equals(buttons[i][j]))
                     if (!game.makeMove(new int[]{i, j}))
                         Toast.makeText(this, this.getResources().getString(R.string.invalid_move), Toast.LENGTH_SHORT).show();
-                }
     }
 
     public void onClickRestart(View view) {
         game.resetBoard();
-        this.updateGUI();
+        updateGUI();
     }
 
     public void onClickBack(View view) {
@@ -172,17 +223,21 @@ public class GameActivity extends ActionBarActivity {
         // Disable all the buttons.
         changeButtonsVisibility(false);
 
+        // This will update scores and restart button.
         updateGUI();
 
-        String dialogString;
-        if(game.getLastWinner() != null)
-            dialogString = "Player " + game.getLastWinner().toString() + " Wins!";
-        else
-            dialogString = getResources().getString(R.string.draw);
+        // If dialogs are supported, show it.
+        if (android.os.Build.VERSION.SDK_INT >= 11) {
 
+            String dialogString;
+            if (game.getLastWinner() != null)
+                dialogString = game.getLastWinner().getName() + " " + getResources().getString(R.string.wins);
+            else
+                dialogString = getResources().getString(R.string.its_a_draw);
 
-        DialogEndGame dialogFragment = DialogEndGame.newInstance(dialogString + "\nWant to play again?");
-        dialogFragment.show(getFragmentManager(), "dialog");
+            DialogEndGame dialogFragment = DialogEndGame.newInstance(dialogString);
+            dialogFragment.show(getFragmentManager(), "endGameDialog");
+        }
     }
 
     public void endGameDialogYes() {
@@ -193,10 +248,5 @@ public class GameActivity extends ActionBarActivity {
     public void endGameDialogNo() {
         // Why someone would press this button?
     }
-
-
-
-
-
 
 }

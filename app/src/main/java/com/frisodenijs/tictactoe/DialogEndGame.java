@@ -36,20 +36,19 @@ public class DialogEndGame extends DialogFragment {
         String title = getArguments().getString("title");
         return new AlertDialog.Builder(getActivity()).setIcon(R.drawable.ic_launcher)
                 .setTitle(title)
-                .setPositiveButton("Yes!",
+                .setPositiveButton(getResources().getString(R.string.play_again),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 ((GameActivity) getActivity()).endGameDialogYes();
                             }
                         })
-                .setNegativeButton("No",
+                .setNegativeButton(getResources().getString(R.string.see_board),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 ((GameActivity) getActivity()).endGameDialogNo();
                             }
                         }).create();
     }
-
 
     /**
      * Clicking outside the dialog box = clicking No

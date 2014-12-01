@@ -15,11 +15,6 @@ public class RandomPlayer extends Player {
 
     @Override
     public int[] makeAutoMove(Board board) {
-        return makeAutoMove();
-    }
-
-    @Override
-    public int[] makeAutoMove() {
 
         int randomX = (int) (Math.random() * 3);
         int randomY = (int) (Math.random() * 3);

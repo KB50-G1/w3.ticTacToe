@@ -16,11 +16,6 @@ public class AIPlayer extends Player {
     }
 
     @Override
-    public int[] makeAutoMove() {
-        return new int[0];
-    }
-
-    @Override
     public int[] makeAutoMove(Board board) {
         try {
         if (winningMove(board).length == 2) {
