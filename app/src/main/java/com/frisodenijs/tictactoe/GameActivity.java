@@ -53,7 +53,7 @@ public class GameActivity extends ActionBarActivity {
 
         drawScore = (TextView) findViewById(R.id.drawScore);
 
-        buttons = new Button[3][3];
+        buttons = new Button[game.getBoard().length][game.getBoard().length];
         buttons[0][0] = (Button) findViewById(R.id.b00);
         buttons[0][1] = (Button) findViewById(R.id.b01);
         buttons[0][2] = (Button) findViewById(R.id.b02);
@@ -110,8 +110,8 @@ public class GameActivity extends ActionBarActivity {
         Player[][] board = game.getBoard();
 
         // Update Board Buttons
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < game.getBoard().length; i++)
+            for (int j = 0; j < game.getBoard().length; j++) {
                 if (board[i][j] != null) {
                     // Place the player text (X or O) in the button.
                     buttons[i][j].setText(board[i][j].toString());
@@ -123,7 +123,7 @@ public class GameActivity extends ActionBarActivity {
             }
 
         // Update Players Information
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < game.getPlayers().size(); i++) {
             playersIcons[i].setVisibility(View.INVISIBLE);
             playersNames[i].setTypeface(null, Typeface.NORMAL);
             if (game.getPlayer(i).equals(game.getCurrentPlayer())) {
@@ -170,8 +170,8 @@ public class GameActivity extends ActionBarActivity {
         // Save the buttons state, to be able to recover it.
         game.setButtonsVisibility(boolState);
 
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < game.getBoard().length; i++)
+            for (int j = 0; j < game.getBoard().length; j++) {
                 buttons[i][j].setEnabled(boolState);
             }
     }
@@ -184,8 +184,8 @@ public class GameActivity extends ActionBarActivity {
 
         Button buttonPressed = (Button) findViewById(view.getId());
 
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++)
+        for (int i = 0; i < game.getBoard().length; i++)
+            for (int j = 0; j < game.getBoard().length; j++)
                 if (buttonPressed.equals(buttons[i][j]))
                     if (!game.makeMove(new int[]{i, j}))
                         Toast.makeText(this, this.getResources().getString(R.string.invalid_move), Toast.LENGTH_SHORT).show();

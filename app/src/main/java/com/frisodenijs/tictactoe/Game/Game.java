@@ -78,6 +78,10 @@ public class Game implements Serializable {
         return currentPlayer;
     }
 
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
     public Player getPlayer(int i) {
         return players.get(i);
     }

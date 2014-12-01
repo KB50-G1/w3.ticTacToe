@@ -9,11 +9,13 @@ import java.io.Serializable;
  */
 public class Board implements Serializable {
 
+    public static final int SIZE = 3;
+
     private Player[][] board;
     private Player winner;
 
     public Board() {
-        board = new Player[3][3];
+        board = new Player[Board.SIZE][Board.SIZE];
         winner = null;
     }
 
