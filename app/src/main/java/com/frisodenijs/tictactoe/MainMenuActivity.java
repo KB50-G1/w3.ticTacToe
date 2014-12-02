@@ -48,7 +48,7 @@ public class MainMenuActivity extends ActionBarActivity {
         } else {
             game = new Game(
                     new HumanPlayer(selectIcon(0), playerOneName),
-                    new RandomPlayer(selectIcon(1), playerTwoName),
+                    new AIPlayer(selectIcon(1), playerTwoName),
                     selectFirstPlayer()
             );
         }
