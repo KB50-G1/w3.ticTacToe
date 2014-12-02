@@ -30,13 +30,6 @@
     <string name="player_one">Speler 1</string>
     <string name="player_two">Speler 2</string>
 
-    <string name="X">X</string>
-    <string name="O">O</string>
-
-    <string name="p1">P1</string>
-    <string name="p2">P2</string>
-    <string name="p1p2">P1/P2</string>
-
     <string name="save">Save</string>
     <string name="first_player">Eerste Zet</string>
 

@@ -20,5 +20,22 @@
     <string name="back_to_main">Menu principal</string>
     <string name="play_again">Jugar otra vez</string>
     <string name="invalid_move">Movimiento Invalido</string>
+    <string name="no">No</string>
+    <string name="p1"></string>
+    <string name="player">Jugador</string>
+    <string name="player_one">Jugador 1</string>
+    <string name="player_two">Jugador 2</string>
+    <string name="players_names">Nombre Jugadores</string>
+    <string name="preference_file_key"></string>
+    <string name="save">Guardar</string>
+    <string name="see_board">Ver tablero</string>
+    <string name="testing">Pruebas</string>
+    <string name="title_activity_settings">Preferencias</string>
+    <string name="wins">Gana!</string>
+    <string name="yes">Si</string>
+    <string name="zero_players">Cero Jugadores</string>
+    <string name="its_a_draw">Empate!</string>
+    <string name="first_player">Primer movimiento</string>
+    <string name="difficulty">Dificultad</string>
 
 </resources>
