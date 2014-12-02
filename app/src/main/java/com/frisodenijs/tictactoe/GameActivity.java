@@ -53,7 +53,7 @@ public class GameActivity extends ActionBarActivity {
 
         drawScore = (TextView) findViewById(R.id.drawScore);
 
-        buttons = new Button[game.getBoard().length][game.getBoard().length];
+        buttons = new Button[3][3];
         buttons[0][0] = (Button) findViewById(R.id.b00);
         buttons[0][1] = (Button) findViewById(R.id.b01);
         buttons[0][2] = (Button) findViewById(R.id.b02);
