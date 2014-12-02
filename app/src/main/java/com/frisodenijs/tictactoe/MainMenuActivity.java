@@ -41,7 +41,7 @@ public class MainMenuActivity extends ActionBarActivity {
 
         if (sharedPreferences.getBoolean("hardMode", false)) {
             game = new Game(
-                    new RandomPlayer(selectIcon(0), playerOneName),
+                    new HumanPlayer(selectIcon(0), playerOneName),
                     new AIPlayer(selectIcon(1), playerTwoName),
                     selectFirstPlayer()
             );

@@ -152,7 +152,7 @@ public class GameActivity extends ActionBarActivity {
         Button restartButton = (Button) findViewById(R.id.restartButton);
 
         // Update Restart / Play Again button text.
-        if (game.getLastWinner() != null)
+        if (game.isFinished())
         {
             restartButton.setText(getResources().getString(R.string.play_again));
             restartButton.setBackgroundColor(getResources().getColor(R.color.sea1));
