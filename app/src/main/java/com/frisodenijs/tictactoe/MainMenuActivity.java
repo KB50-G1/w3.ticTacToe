@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.Button;
 
 import com.frisodenijs.tictactoe.Game.Game;
 import com.frisodenijs.tictactoe.Game.HumanPlayer;
@@ -35,6 +36,33 @@ public class MainMenuActivity extends ActionBarActivity {
         super.onResume();
         playerOneName = sharedPreferences.getString("playerOneName", "Player 1");
         playerTwoName = sharedPreferences.getString("playerTwoName", "Player 2");
+
+        Boolean testing = sharedPreferences.getBoolean("testingOptions", false);
+        Button zeroPlayers = (Button) findViewById(R.id.zeroPlayersButton);
+        if(testing)
+            zeroPlayers.setVisibility(View.VISIBLE);
+        else
+            zeroPlayers.setVisibility(View.GONE);
+
+    }
+
+    public void onClickZeroPlayers(View view) {
+
+        if (sharedPreferences.getBoolean("hardMode", false)) {
+            game = new Game(
+                    new AIPlayer(selectIcon(0), playerOneName),
+                    new RandomPlayer(selectIcon(1), playerTwoName),
+                    selectFirstPlayer()
+            );
+        } else {
+            game = new Game(
+                    new RandomPlayer(selectIcon(0), playerOneName),
+                    new RandomPlayer(selectIcon(1), playerTwoName),
+                    selectFirstPlayer()
+            );
+        }
+
+        this.loadGameActivity(game);
     }
 
     public void onClickOnePlayer(View view) {

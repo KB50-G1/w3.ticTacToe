@@ -27,6 +27,16 @@
         android:gravity="center">
 
         <Button
+            android:id="@+id/zeroPlayersButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickZeroPlayers"
+            android:text="@string/zero_players"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/buttonshape"/>
+
+        <Button
             android:id="@+id/onePlayerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

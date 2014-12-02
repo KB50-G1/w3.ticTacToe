@@ -162,7 +162,6 @@ public class GameActivity extends ActionBarActivity {
             restartButton.setText(getResources().getString(R.string.restart));
             restartButton.setBackgroundColor(getResources().getColor(R.color.white));
         }
-
     }
 
     public void changeButtonsVisibility(boolean boolState) {

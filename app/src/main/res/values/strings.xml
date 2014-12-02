@@ -15,6 +15,7 @@
     <string name="easy_mode">Easy</string>
     <string name="hard_mode">Hard</string>
 
+    <string name="zero_players">Zero Players</string>
     <string name="one_player">One Player</string>
     <string name="two_players">Two Players</string>
 
@@ -47,5 +48,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="see_board">See board</string>
+
+    <string name="testing">Testing</string>
 
 </resources>

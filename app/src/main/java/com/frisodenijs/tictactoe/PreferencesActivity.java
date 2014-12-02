@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
@@ -28,6 +29,8 @@ public class PreferencesActivity extends ActionBarActivity {
     private RadioButton easyMode;
     private RadioButton hardMode;
 
+    private CheckBox testingOptions;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,8 @@ public class PreferencesActivity extends ActionBarActivity {
         easyMode = (RadioButton) findViewById(R.id.easyMode);
         hardMode = (RadioButton) findViewById(R.id.hardMode);
 
+        testingOptions = (CheckBox) findViewById(R.id.testingCheckbox);
+
         if(savedInstanceState == null)
         {
             playerOneName.setText(sharedPreferences.getString("playerOneName", "Player 1"));
@@ -62,6 +67,9 @@ public class PreferencesActivity extends ActionBarActivity {
 
             easyMode.setChecked(sharedPreferences.getBoolean("easyMode", true));
             hardMode.setChecked(sharedPreferences.getBoolean("hardMode", false));
+
+            testingOptions.setChecked(sharedPreferences.getBoolean("testingOptions", false));
+
         }
 
     }
@@ -88,6 +96,8 @@ public class PreferencesActivity extends ActionBarActivity {
         outState.putBoolean("easyMode", easyMode.isChecked());
         outState.putBoolean("hardMode", hardMode.isChecked());
 
+        outState.putBoolean("testingOptions", testingOptions.isChecked());
+
     }
 
     @Override
@@ -106,6 +116,8 @@ public class PreferencesActivity extends ActionBarActivity {
 
         easyMode.setChecked(savedInstanceState.getBoolean("easyMode"));
         hardMode.setChecked(savedInstanceState.getBoolean("hardMode"));
+
+        testingOptions.setChecked(savedInstanceState.getBoolean("testingOptions"));
     }
 
     public void savePreferences(View view) {
@@ -125,6 +137,8 @@ public class PreferencesActivity extends ActionBarActivity {
 
         editor.putBoolean("easyMode", easyMode.isChecked());
         editor.putBoolean("hardMode", hardMode.isChecked());
+
+        editor.putBoolean("testingOptions", testingOptions.isChecked());
 
         // Save all changes made to the preferences
         editor.commit();
