@@ -1,6 +1,5 @@
 package com.frisodenijs.tictactoe.Game;
 
-
 import com.frisodenijs.tictactoe.GameActivity;
 
 import java.io.Serializable;

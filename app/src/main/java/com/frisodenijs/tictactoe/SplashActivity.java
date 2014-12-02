@@ -7,7 +7,6 @@ import android.support.v7.app.ActionBarActivity;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 public class SplashActivity extends ActionBarActivity {
 
     @Override
@@ -28,5 +27,4 @@ public class SplashActivity extends ActionBarActivity {
         Timer timer = new Timer();
         timer.schedule(task, 3000); // 3000ms = 3s
     }
-
 }

@@ -1,5 +1,6 @@
 package com.frisodenijs.tictactoe.Game;
 
+import android.util.Log;
 /**
  * Created by Friso on 14/11/25.
  */

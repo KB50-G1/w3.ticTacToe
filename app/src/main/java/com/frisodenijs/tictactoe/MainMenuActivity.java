@@ -12,7 +12,7 @@ import com.frisodenijs.tictactoe.Game.Game;
 import com.frisodenijs.tictactoe.Game.HumanPlayer;
 import com.frisodenijs.tictactoe.Game.Player;
 import com.frisodenijs.tictactoe.Game.RandomPlayer;
-
+import com.frisodenijs.tictactoe.Game.AIPlayer;
 
 public class MainMenuActivity extends ActionBarActivity {
 
