@@ -14,6 +14,7 @@
     <string name="easy_mode">簡單</string>
     <string name="hard_mode">困難</string>
 
+    <string name="zero_players">沒有玩家</string>
     <string name="one_player">一個玩家</string>
     <string name="two_players">兩個玩家</string>
 
@@ -41,5 +42,6 @@
     <string name="see_board">看板</string>
 
     <string name="testing">測試</string>
+
 
 </resources>
