@@ -43,6 +43,8 @@
                 android:background="@android:color/transparent"
                 android:onClick="onClickBoardButton"
                 android:textSize="80sp"
+                android:gravity="center"
+                android:text=""
                 />
 
             <Button

@@ -117,7 +117,8 @@ public class GameActivity extends ActionBarActivity {
                     buttons[i][j].setText(board[i][j].toString());
                     // Change the color of the text.
                     buttons[i][j].setTextColor(board[i][j].getColor());
-                    buttons[i][j].setTypeface(customFont);
+                    // TODO: custom font disabled, default one is prettier
+                    //buttons[i][j].setTypeface(customFont);
                 } else
                     buttons[i][j].setText("");
             }
@@ -212,10 +213,10 @@ public class GameActivity extends ActionBarActivity {
 
     public void goToFinishGame() {
 
-        // Disable all the buttons.
+        // Disable all the board buttons.
         changeButtonsVisibility(false);
 
-        // This will update scores and restart button.
+        // This will update scores and the restart button. (Also the board, but it shouldn't have changed)
         updateGUI();
 
         // If dialogs are supported, show it.
