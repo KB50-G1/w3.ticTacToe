@@ -34,7 +34,7 @@ public class GameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        customFont = Typeface.createFromAsset(getAssets(), "fonts/HaloHandletter.otf");
+        customFont = Typeface.createFromAsset(getAssets(), "fonts/Fineliner_Script.ttf");
 
         playersNames = new TextView[]{
                 (TextView) findViewById(R.id.playerOneName),

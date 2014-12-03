@@ -32,7 +32,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickBoardButton"
-                android:textSize="50sp"
+                android:textSize="80sp"
                 android:text=" "
                 />
 
@@ -43,7 +43,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickBoardButton"
-                android:textSize="50sp"
+                android:textSize="80sp"
                 android:text=" "
                 />
 
@@ -54,7 +54,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickBoardButton"
-                android:textSize="50sp"
+                android:textSize="80sp"
                 android:text=" "
                 />
         </TableRow>
@@ -71,7 +71,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickBoardButton"
-                android:textSize="50sp"
+                android:textSize="80sp"
                 android:text=" "
                 />
 
@@ -82,7 +82,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickBoardButton"
-                android:textSize="50sp"
+                android:textSize="80sp"
                 android:text=" "
                 />
 
@@ -93,7 +93,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickBoardButton"
-                android:textSize="50sp"
+                android:textSize="80sp"
                 android:text=" "
                 />
         </TableRow>
@@ -110,7 +110,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickBoardButton"
-                android:textSize="50sp"
+                android:textSize="80sp"
                 android:text=" "
                 />
 
@@ -121,7 +121,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickBoardButton"
-                android:textSize="50sp"
+                android:textSize="80sp"
                 android:text=" "
                 />
 
@@ -132,7 +132,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="onClickBoardButton"
-                android:textSize="50sp"
+                android:textSize="80sp"
                 android:text=" "
                 />
         </TableRow>
