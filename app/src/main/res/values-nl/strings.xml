@@ -15,7 +15,7 @@
     <string name="hard_mode">Moeilijk</string>
 
     <string name="win">Win</string>
-    <string name="wins">Wins!</string>
+    <string name="wins">Wint!</string>
     <string name="lose">Sorry, je hebt verloren.</string>
     <string name="draw">Gelijkspel</string>
     <string name="its_a_draw">Het is gelijkspel!</string>
@@ -36,5 +36,9 @@
     <string name="yes">Ja</string>
     <string name="no">Nee</string>
     <string name="see_board">Zie bord</string>
+    <string name="one_player">Een Speler</string>
+    <string name="testing">Testen</string>
+    <string name="two_players">Twee Spelers</string>
+    <string name="zero_players">Nul Spelers</string>
 
 </resources>
