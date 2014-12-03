@@ -27,6 +27,12 @@ public class Board implements Serializable {
         return winner;
     }
 
+    /**
+     *
+     * @param player
+     * @param position
+     * @return
+     */
     public boolean setPlayerAtPosition(Player player, int[] position) {
 
         if (board[position[0]][position[1]] == null) {
@@ -57,6 +63,10 @@ public class Board implements Serializable {
         return true;
     }
 
+    /**
+     *
+     * @return Player or null
+     */
     public Player checkWinner() {
 
         // 1. check horizontal. 2: check vertical. 3: check diagonals
@@ -73,6 +83,10 @@ public class Board implements Serializable {
         return winner;
     }
 
+    /**
+     *
+     * Warning: not the most efficient code in here!
+     */
     // Checks if there are 3 in a row horizontally.
     public Player checkHorizontal() {
         for (int y = 0; y < board.length; y++) {
