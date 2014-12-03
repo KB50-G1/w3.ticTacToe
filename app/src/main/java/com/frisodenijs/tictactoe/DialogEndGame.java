@@ -11,7 +11,9 @@ import android.os.Bundle;
  */
 public class DialogEndGame extends DialogFragment {
 
-    // TODO: lots of methods (and the class we extend) need android 11 or above!
+    /**
+     * Forget about all API warnings. This class is never instantiated if the API is not supporting dialogs.
+     */
 
     static DialogEndGame newInstance(String title) {
         DialogEndGame fragment = new DialogEndGame();
@@ -26,8 +28,7 @@ public class DialogEndGame extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TODO: this function avoid the app crashing when the activity is destroyed while the dialog is shown
-        // TODO: but it dissapears, we need it back!
+        // This function avoid the app crashing when the activity is destroyed while the dialog is shown.
         setRetainInstance(true);
     }
 
@@ -51,7 +52,7 @@ public class DialogEndGame extends DialogFragment {
     }
 
     /**
-     * Clicking outside the dialog box = clicking No
+     * Clicking outside the dialog box have the same effect as clicking See board (NO)
      *
      * @param dialog
      */
