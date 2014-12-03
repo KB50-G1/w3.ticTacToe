@@ -2,23 +2,44 @@
 <resources>
 
     <string name="app_name">圈圈叉叉</string>
-    <string name="action_settings">設定</string>
 
+    <string name="action_settings">設定</string>
     <string name="title_activity_splash">打開</string>
     <string name="title_activity_game">遊戲</string>
     <string name="title_activity_main_menu">主畫面</string>
     <string name="title_activity_end_menu">遊戲結束</string>
+    <string name="title_activity_settings">設定</string>
 
-    <string name="easy_mode">簡單模式</string>
-    <string name="hard_mode">困難模式</string>
-    <string name="restart">重新開始</string>
+    <string name="difficulty">難度</string>
+    <string name="easy_mode">簡單</string>
+    <string name="hard_mode">困難</string>
+
     <string name="one_player">一個玩家</string>
     <string name="two_players">兩個玩家</string>
+
     <string name="win">恭喜, 你贏了!</string>
+    <string name="wins">恭喜, 你贏了!</string>
     <string name="lose">抱歉, 你輸了.</string>
     <string name="draw">平手</string>
-    <string name="back_to_main">回到主畫面</string>
+    <string name="its_a_draw">這是平手</string>
+
+    <string name="restart">重新開始</string>
     <string name="play_again">再來一次</string>
-    <string name="invalid_move">無效的點擊</string>
+    <string name="invalid_move">無效的選擇</string>
+    <string name="back_to_main">回到主畫面</string>
+
+    <string name="player">玩家</string>
+    <string name="players_names">玩家名字</string>
+    <string name="player_one">玩家 1</string>
+    <string name="player_two">玩家 2</string>
+
+    <string name="save">儲存</string>
+    <string name="first_player">第一步</string>
+
+    <string name="yes">確定</string>
+    <string name="no">不</string>
+    <string name="see_board">看板</string>
+
+    <string name="testing">測試</string>
 
 </resources>
